@@ -1,16 +1,16 @@
-Fitter Status : Successful - Sun Nov  3 03:02:24 2019
+Fitter Status : Successful - Sun Nov  3 03:44:32 2019
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : RISC_pipelined
-Top-level Entity Name : stage1
+Top-level Entity Name : risc_pipelining
 Family : Cyclone IV E
 Device : EP4CE22F17C6
 Timing Models : Final
-Total logic elements : 48 / 22,320 ( < 1 % )
-    Total combinational functions : 31 / 22,320 ( < 1 % )
-    Dedicated logic registers : 33 / 22,320 ( < 1 % )
-Total registers : 33
-Total pins : 70 / 154 ( 45 % )
+Total logic elements : 0 / 22,320 ( 0 % )
+    Total combinational functions : 0 / 22,320 ( 0 % )
+    Dedicated logic registers : 0 / 22,320 ( 0 % )
+Total registers : 0
+Total pins : 2 / 154 ( 1 % )
 Total virtual pins : 0
-Total memory bits : 1,616 / 608,256 ( < 1 % )
+Total memory bits : 0 / 608,256 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
 Total PLLs : 0 / 4 ( 0 % )

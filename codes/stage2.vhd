@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity stage2 is
     port (
     	   clk, hzrd_clk, rst                  : in  std_logic;
-    	   valid_in                            : in std_logic;
+    	   valid_in, load_lukhi3               : in std_logic;
     	   ir, pc_old_i                        : in std_logic_vector(15 downto 0);
     	   pc_old_o, pc_plus_imm               : out std_logic_vector(15 downto 0);
     	   imm6                                : out std_logic_vector(5 downto 0);
@@ -19,7 +19,7 @@ entity stage2 is
     	   mem_rd_5, reg_wr_6                  : out std_logic;
     	   jlr_yes, beq_yes, jal_yes           : out std_logic;
     	   valid_out, lm_out_2, sm_out_2       : out std_logic;
-    	   read_from_a, load_lukhi3            : out std_logic;
+    	   read_from_a                         : out std_logic;
     	   load_hzrd_out_2a, load_hzrd_out_2b  : out std_logic;
     	   load_hzrd_out_2c, load_hzrd_out_2   : out std_logic;
     	   ra_is_r7, rb_is_r7, rc_is_r7        : out std_logic;
