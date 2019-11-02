@@ -38,21 +38,25 @@ signal alu_out,alu_in,reg_val: std_logic_vector(15 downto 0) ;
 signal counter:std_logic_vector(15 downto 0) := x"0000";
 signal car_dump,zer_dump:std_logic;
 
-component alu is
-	port (xin,yin: in std_logic_vector(15 downto 0);m0,m1: in std_logic;zout: out std_logic_vector(15 downto 0);c,z : out std_logic);
+component ALU is
+	port (
+		A, B	: in std_logic_vector(15 downto 0);
+		OP 		: in std_logic_vector(1 downto 0);
+		O 		: out std_logic_vector(15 downto 0);
+		C, Z	: out std_logic
+	);
 end component;
 
 begin
 
 fsm_alu: alu 
 	port map
-	(xin      =>   alu_in,           
-	 yin      =>   x"0001",         
-	 m0       =>   '0' ,            
-	 m1       =>   '0',     
-	 zout     =>   alu_out,
-	 c        => car_dump,
-	 z        =>  zer_dump  );
+	(A      =>   alu_in,           
+	 B      =>   x"0001",         
+	 OP       =>   "00" ,     
+	 O     =>   alu_out,
+	 C        => car_dump,
+	 Z        =>  zer_dump  );
 
 alu_in <= counter when (state = S3 or state = S5) else
 	     mem_addr_in when (state = S2 or state = S6) else

@@ -1,0 +1,15 @@
+
+State Machine - |risc_pipelining|controller:controller1|state
+Name state.lukhi5 state.lukhi4 state.lukhi3 state.lukhi2 state.lukhi1 state.S6 state.S5 state.S4 state.S3 state.S2 state.S1 state.S0 
+state.S0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.S1 0 0 0 0 0 0 0 0 0 0 1 1 
+state.S2 0 0 0 0 0 0 0 0 0 1 0 1 
+state.S3 0 0 0 0 0 0 0 0 1 0 0 1 
+state.S4 0 0 0 0 0 0 0 1 0 0 0 1 
+state.S5 0 0 0 0 0 0 1 0 0 0 0 1 
+state.S6 0 0 0 0 0 1 0 0 0 0 0 1 
+state.lukhi1 0 0 0 0 1 0 0 0 0 0 0 1 
+state.lukhi2 0 0 0 1 0 0 0 0 0 0 0 1 
+state.lukhi3 0 0 1 0 0 0 0 0 0 0 0 1 
+state.lukhi4 0 1 0 0 0 0 0 0 0 0 0 1 
+state.lukhi5 1 0 0 0 0 0 0 0 0 0 0 1 

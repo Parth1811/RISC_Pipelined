@@ -54,9 +54,14 @@ use ieee.numeric_std.all;
 
  architecture behave of stage2 is
 
-   component alu is
-  	port (xin,yin: in std_logic_vector(15 downto 0);m0,m1: in std_logic;zout: out std_logic_vector(15 downto 0);c,z : out std_logic);
-  end component;
+	component ALU is
+		port (
+			A, B	: in std_logic_vector(15 downto 0);
+			OP 		: in std_logic_vector(1 downto 0);
+			O 		: out std_logic_vector(15 downto 0);
+			C, Z	: out std_logic
+		);
+	end component;
 
   signal yin,imm6_16,imm9_se_16 : std_logic_vector(15 downto 0);
   signal r_a1,r_a2,r_a3,r_b,r_c,r_a,r_a_hzrdn,r_b_hzrdn,r_c_hzrdn,r_a_hzrdx,r_b_hzrdx,r_c_hzrdx : std_logic_vector(2 downto 0);
@@ -75,13 +80,12 @@ r_a <= ir(11 downto 9);
 valid_out <= valid_out1;
    stage_4_alu: alu
 	port map
-	(xin      =>   pc_old_i,
-	 yin      =>   yin,
-	 m0       =>   '0',
-	 m1       =>   '0',
-	 zout     =>   pc_plus_imm,
-	 c        => carry1,
-	 z        =>  zero1  );
+	(A     =>   pc_old_i,
+	 B     =>   yin,
+	 OP    =>   "00",
+	 O     =>   pc_plus_imm,
+	 C     => carry1,
+	 Z     =>  zero1  );
 
 imm6_16(5 downto 0) <= ir(5 downto 0);
 imm6_16(15 downto 6) <= (others => '0');
