@@ -1,0 +1,816 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/parth/RISCwithPipelining/simulation/modelsim
+Eadder_16bit
+Z1 w1572733417
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 DPx4 work 7 project 0 22 a=RzBC;Cek2lc`n5I_2h13
+R0
+Z5 8/home/parth/RISCwithPipelining/codes/ALU.vhdl
+Z6 F/home/parth/RISCwithPipelining/codes/ALU.vhdl
+l0
+L50
+VjM[44jh=83<7UY`f=f`:Y1
+!s100 ]kNz4VJf@O2UBzz]Z90`i3
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1572734925
+!i10b 1
+Z9 !s108 1572734925.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/ALU.vhdl|
+Z11 !s107 /home/parth/RISCwithPipelining/codes/ALU.vhdl|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Aequations
+R2
+R3
+R4
+DEx4 work 11 adder_16bit 0 22 jM[44jh=83<7UY`f=f`:Y1
+l61
+L58
+Vb43SB6=imaNhNJ08_D3XE0
+!s100 liUTXi=7l^?lZTzVhPAC62
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ealu
+R1
+R2
+R3
+R4
+R0
+R5
+R6
+l0
+L197
+Vd3z^ljUiPmi4BTR5P83T`3
+!s100 4<1YHlPZoLi_gAWGO;ZR91
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Aarch
+R2
+R3
+R4
+DEx4 work 3 alu 0 22 d3z^ljUiPmi4BTR5P83T`3
+l210
+L206
+ViiOJcRzA22R6a1UOXl2;F3
+!s100 SLEmfSmnD_>kY^Mhn9g_I1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Econtroller
+R1
+Z14 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R2
+R3
+R0
+Z15 8/home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd
+Z16 F/home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd
+l0
+L5
+VF>g@X5N:4QG756h2FYWJE3
+!s100 m8nG;Q^PR3kH_4mYz0P6z3
+R7
+31
+Z17 !s110 1572734926
+!i10b 1
+Z18 !s108 1572734926.000000
+Z19 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd|
+Z20 !s107 /home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd|
+!i113 1
+R12
+R13
+Aatrangi
+R14
+R2
+R3
+DEx4 work 10 controller 0 22 F>g@X5N:4QG756h2FYWJE3
+l50
+L33
+V=M:L:<g>5HcTWZ[h^gl^P2
+!s100 TTi2N@PEe``^i3800f;T30
+R7
+31
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R12
+R13
+Ememory1
+Z21 w1572734845
+Z22 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z23 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R14
+R2
+R3
+R0
+Z24 8/home/parth/RISCwithPipelining/codes/memory.vhd
+Z25 F/home/parth/RISCwithPipelining/codes/memory.vhd
+l0
+L9
+VeBzW0agXPYE]I4F@RC]A11
+!s100 D_U5aK40K;_IaXbScXM722
+R7
+31
+R17
+!i10b 1
+R18
+Z26 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/memory.vhd|
+Z27 !s107 /home/parth/RISCwithPipelining/codes/memory.vhd|
+!i113 1
+R12
+R13
+Aform
+R22
+R23
+R14
+R2
+R3
+DEx4 work 7 memory1 0 22 eBzW0agXPYE]I4F@RC]A11
+l35
+L18
+V@TJ=kFlFWW_bScEbNj_Fz1
+!s100 hiHYC?:0M_JCnJ`b7hEmD3
+R7
+31
+R17
+!i10b 1
+R18
+R26
+R27
+!i113 1
+R12
+R13
+Ememory2
+R21
+R22
+R23
+R14
+R2
+R3
+R0
+R24
+R25
+l0
+L60
+VX;0eG?gK2i:JS7GQkV=WC0
+!s100 j?:nlX@iZnhP@VBiC<lzM1
+R7
+31
+R17
+!i10b 1
+R18
+R26
+R27
+!i113 1
+R12
+R13
+Aform
+R22
+R23
+R14
+R2
+R3
+DEx4 work 7 memory2 0 22 X;0eG?gK2i:JS7GQkV=WC0
+l86
+L68
+VB=8deo[>QCJ>>`YPHaaFe3
+!s100 4lAnnVliDLHhn6aMA<=8o1
+R7
+31
+R17
+!i10b 1
+R18
+R26
+R27
+!i113 1
+R12
+R13
+Emux_4
+R1
+R2
+R3
+R4
+R0
+R5
+R6
+l0
+L138
+V5RLe[zDkZUMf0Ic1zRWko2
+!s100 oUWP^j@BhU=6CS7A?F_0E2
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Aarch
+R2
+R3
+R4
+DEx4 work 5 mux_4 0 22 5RLe[zDkZUMf0Ic1zRWko2
+l147
+L145
+VdRBb48RekENHh[S7i]4R=0
+!s100 Qo?cEG^DTKRX]k3XG`AKS1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Enand_16bit
+R1
+R2
+R3
+R4
+R0
+R5
+R6
+l0
+L82
+V0[FgiX9R^XTb4b>mcbm2b3
+!s100 ecI;HD]D>GUHannBTjX0@1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Aequations
+R2
+R3
+R4
+DEx4 work 10 nand_16bit 0 22 0[FgiX9R^XTb4b>mcbm2b3
+l90
+L88
+VTh`k:U]Z@>I62PXC;?6_T3
+!s100 ;BnC=VfhAO45eFlVHOhjX1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pproject
+R2
+R3
+R1
+R0
+R5
+R6
+l0
+L6
+Va=RzBC;Cek2lc`n5I_2h13
+!s100 6X]d>IzKA<]KRelY2f][92
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ereg_file
+R1
+R14
+R2
+R3
+R0
+Z28 8/home/parth/RISCwithPipelining/codes/reg_file.vhd
+Z29 F/home/parth/RISCwithPipelining/codes/reg_file.vhd
+l0
+L6
+V23OWNY9BA7]=eVShaIkl?3
+!s100 ?;d2oWG[mT9a^P52N>7Zm1
+R7
+31
+R17
+!i10b 1
+R18
+Z30 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/reg_file.vhd|
+Z31 !s107 /home/parth/RISCwithPipelining/codes/reg_file.vhd|
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 8 reg_file 0 22 23OWNY9BA7]=eVShaIkl?3
+l37
+L26
+Va]:g:fIU`kk_hQKCOPVnW2
+!s100 7K=OIGcg_3b=WXKE2QV5N0
+R7
+31
+R17
+!i10b 1
+R18
+R30
+R31
+!i113 1
+R12
+R13
+Ereg_file_wrap
+R1
+R14
+R2
+R3
+R0
+R28
+R29
+l0
+L127
+VVFeRg@VJefF]HW8emZ;D@1
+!s100 Ud]WcJZn;lcY6C98dP<D60
+R7
+31
+R17
+!i10b 1
+R18
+R30
+R31
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 13 reg_file_wrap 0 22 VFeRg@VJefF]HW8emZ;D@1
+l170
+L146
+VBEbceFOIHV;YZYHG0C[JZ1
+!s100 e@I7g=b6QZo?XOXj_29c_2
+R7
+31
+R17
+!i10b 1
+R18
+R30
+R31
+!i113 1
+R12
+R13
+Erisc_pipelining
+R1
+R14
+R2
+R3
+R0
+Z32 8/home/parth/RISCwithPipelining/codes/risc_pipelining.vhd
+Z33 F/home/parth/RISCwithPipelining/codes/risc_pipelining.vhd
+l0
+L6
+V_^e:CbI9NL?bHUU5?nR<W1
+!s100 oUXgI9M_UiJfF2L@m6_?;3
+R7
+31
+R17
+!i10b 1
+R18
+Z34 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/risc_pipelining.vhd|
+Z35 !s107 /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd|
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 15 risc_pipelining 0 22 _^e:CbI9NL?bHUU5?nR<W1
+l388
+L17
+V@PDA[Q:?cR`dP228e^0iQ0
+!s100 >i7[CLN8g5?O8AFX:She^2
+R7
+31
+R17
+!i10b 1
+R18
+R34
+R35
+!i113 1
+R12
+R13
+Eshifter
+R1
+R2
+R3
+R0
+Z36 8/home/parth/RISCwithPipelining/codes/shifter.vhd
+Z37 F/home/parth/RISCwithPipelining/codes/shifter.vhd
+l0
+L6
+VL3UjaMznE`=h;LUkRYFEH3
+!s100 Lj=m0APG5iaVfU>og^HHY2
+R7
+31
+R17
+!i10b 1
+R18
+Z38 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/shifter.vhd|
+Z39 !s107 /home/parth/RISCwithPipelining/codes/shifter.vhd|
+!i113 1
+R12
+R13
+Akahipan
+R2
+R3
+DEx4 work 7 shifter 0 22 L3UjaMznE`=h;LUkRYFEH3
+l12
+L9
+VdckiXR1f]6nGz1VcRo?IM1
+!s100 ]UTmi;Y>kNh5<a3?XV82;0
+R7
+31
+R17
+!i10b 1
+R18
+R38
+R39
+!i113 1
+R12
+R13
+Estage1
+R1
+R14
+R2
+R3
+R0
+Z40 8/home/parth/RISCwithPipelining/codes/stage1.vhd
+Z41 F/home/parth/RISCwithPipelining/codes/stage1.vhd
+l0
+L6
+V<3XBe3KAbfdF>Uc5b:BV`1
+!s100 MlC5mW5dJ``bOI9G`m32O2
+R7
+31
+R17
+!i10b 1
+R18
+Z42 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/stage1.vhd|
+Z43 !s107 /home/parth/RISCwithPipelining/codes/stage1.vhd|
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 6 stage1 0 22 <3XBe3KAbfdF>Uc5b:BV`1
+l45
+L18
+V7>XiN6[O]^H;dO>;k5Y@72
+!s100 c:bMgcm760GEVd^>3F7d03
+R7
+31
+R17
+!i10b 1
+R18
+R42
+R43
+!i113 1
+R12
+R13
+Estage2
+R1
+R14
+R2
+R3
+R0
+Z44 8/home/parth/RISCwithPipelining/codes/stage2.vhd
+Z45 F/home/parth/RISCwithPipelining/codes/stage2.vhd
+l0
+L5
+Vd<cTmfB4iC4[6>ceQC78@2
+!s100 KV2Hebi5dC5=6j6]62@aO3
+R7
+31
+R17
+!i10b 1
+R18
+Z46 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/stage2.vhd|
+Z47 !s107 /home/parth/RISCwithPipelining/codes/stage2.vhd|
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 6 stage2 0 22 d<cTmfB4iC4[6>ceQC78@2
+l47
+L30
+VC9;6P]S_JWf7Pf^5Mo7EX1
+!s100 @dHN2d9aV6;Cm9]^[alM70
+R7
+31
+R17
+!i10b 1
+R18
+R46
+R47
+!i113 1
+R12
+R13
+Estage3
+R1
+R14
+R2
+R3
+R0
+Z48 8/home/parth/RISCwithPipelining/codes/stage3.vhd
+Z49 F/home/parth/RISCwithPipelining/codes/stage3.vhd
+l0
+L5
+V2FGJh^CIz7X_TH^kNP=9j2
+!s100 g3`4zfo9CnfWzPn@AUcmL2
+R7
+31
+R17
+!i10b 1
+R9
+Z50 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/stage3.vhd|
+Z51 !s107 /home/parth/RISCwithPipelining/codes/stage3.vhd|
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 6 stage3 0 22 2FGJh^CIz7X_TH^kNP=9j2
+l109
+L87
+V7U^=SCV]jf8lU?;VCi:JM2
+!s100 j[gRC==9BQN=f27nl5:PX1
+R7
+31
+R17
+!i10b 1
+R9
+R50
+R51
+!i113 1
+R12
+R13
+Estage4
+R1
+R14
+R2
+R3
+R0
+Z52 8/home/parth/RISCwithPipelining/codes/stage4.vhd
+Z53 F/home/parth/RISCwithPipelining/codes/stage4.vhd
+l0
+L6
+VKKhG@NJ@M;EgNL7IFmSX=3
+!s100 EZRNOJYokkMgEMdzGN`E[2
+R7
+31
+R8
+!i10b 1
+R9
+Z54 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/stage4.vhd|
+Z55 !s107 /home/parth/RISCwithPipelining/codes/stage4.vhd|
+!i113 1
+R12
+R13
+Abehav
+R14
+R2
+R3
+DEx4 work 6 stage4 0 22 KKhG@NJ@M;EgNL7IFmSX=3
+l82
+L65
+V`nciGaMljC44mKK50ZnWF1
+!s100 Hkim6KEUIHXHhD099b4^E3
+R7
+31
+R8
+!i10b 1
+R9
+R54
+R55
+!i113 1
+R12
+R13
+Estage5
+Z56 w1572733460
+R14
+R2
+R3
+R0
+Z57 8/home/parth/RISCwithPipelining/codes/stage5.vhd
+Z58 F/home/parth/RISCwithPipelining/codes/stage5.vhd
+l0
+L6
+VJMhZ;U2VGl5JdYXbU6hC82
+!s100 RCG>WW8Kn2J<ad7VJ<fHz2
+R7
+31
+R8
+!i10b 1
+R9
+Z59 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/stage5.vhd|
+Z60 !s107 /home/parth/RISCwithPipelining/codes/stage5.vhd|
+!i113 1
+R12
+R13
+Abehav
+R14
+R2
+R3
+DEx4 work 6 stage5 0 22 JMhZ;U2VGl5JdYXbU6hC82
+l55
+L39
+V6_K5fDjZzk^eBCA027:X=1
+!s100 JDQGmd][eGa[b_doA:V5`3
+R7
+31
+R8
+!i10b 1
+R9
+R59
+R60
+!i113 1
+R12
+R13
+Estage6
+R1
+R14
+R2
+R3
+R0
+Z61 8/home/parth/RISCwithPipelining/codes/stage6.vhd
+Z62 F/home/parth/RISCwithPipelining/codes/stage6.vhd
+l0
+L6
+VMDQ3BklhoMb=Thi1d1@R51
+!s100 :6`2X4_VV2[NjLjSSigUQ0
+R7
+31
+R8
+!i10b 1
+R9
+Z63 !s90 -reportprogress|300|-93|-work|work|/home/parth/RISCwithPipelining/codes/stage6.vhd|
+Z64 !s107 /home/parth/RISCwithPipelining/codes/stage6.vhd|
+!i113 1
+R12
+R13
+Abehave
+R14
+R2
+R3
+DEx4 work 6 stage6 0 22 MDQ3BklhoMb=Thi1d1@R51
+l58
+L37
+V217;?GJ=No][z5oY<YAG@0
+!s100 2EWmH3]OhWzKMHIC19iZ:0
+R7
+31
+R8
+!i10b 1
+R9
+R63
+R64
+!i113 1
+R12
+R13
+Esubtractor_16bit
+R1
+R2
+R3
+R4
+R0
+R5
+R6
+l0
+L107
+VQYA2Qhed1Va_CnZDB0]Yi0
+!s100 :BUzImnEnL6=]LG4XS6Nd3
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Aequations
+R2
+R3
+R4
+DEx4 work 16 subtractor_16bit 0 22 QYA2Qhed1Va_CnZDB0]Yi0
+l118
+L113
+Vi<>4VJa1V;<25OUWz@ehl1
+!s100 JW1DYGz8WM0?egFKXZob[1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etwoscompliment
+R1
+R2
+R3
+R4
+R0
+R5
+R6
+l0
+L164
+V0MB5R@Uk5Ha3Ehjai:fl82
+!s100 <oB8RAAmjePH^X]b<[[2X1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Aarch
+R2
+R3
+R4
+DEx4 work 14 twoscompliment 0 22 0MB5R@Uk5Ha3Ehjai:fl82
+l172
+L170
+VjQKiG`zcELMa?@hH:RD0T2
+!s100 mUXA63gJaN^fi><2=zfoS1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13

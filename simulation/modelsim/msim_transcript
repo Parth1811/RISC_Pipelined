@@ -1,0 +1,236 @@
+# do RISC_pipelined_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Modifying /home/parth/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/../modelsim.ini
+# 
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/ALU.vhdl}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:45 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/ALU.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package project
+# -- Loading package project
+# -- Compiling entity adder_16bit
+# -- Compiling architecture Equations of adder_16bit
+# -- Compiling entity nand_16bit
+# -- Compiling architecture Equations of nand_16bit
+# -- Compiling entity subtractor_16bit
+# -- Compiling architecture Equations of subtractor_16bit
+# -- Compiling entity MUX_4
+# -- Compiling architecture arch of MUX_4
+# -- Compiling entity TwosCompliment
+# -- Compiling architecture arch of TwosCompliment
+# -- Compiling entity ALU
+# -- Compiling architecture arch of ALU
+# End time: 04:18:45 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/stage6.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:45 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/stage6.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity stage6
+# -- Compiling architecture behave of stage6
+# End time: 04:18:45 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/stage5.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:45 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/stage5.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity stage5
+# -- Compiling architecture behav of stage5
+# End time: 04:18:45 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/stage4.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:45 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/stage4.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity stage4
+# -- Compiling architecture behav of stage4
+# End time: 04:18:45 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/stage3.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:45 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/stage3.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity stage3
+# -- Compiling architecture behave of stage3
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/stage2.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/stage2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity stage2
+# -- Compiling architecture behave of stage2
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/stage1.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/stage1.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity stage1
+# -- Compiling architecture behave of stage1
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/shifter.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/shifter.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity shifter
+# -- Compiling architecture kahipan of shifter
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/risc_pipelining.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity risc_pipelining
+# -- Compiling architecture behave of risc_pipelining
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/reg_file.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/reg_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity reg_file
+# -- Compiling architecture behave of reg_file
+# -- Compiling entity reg_file_wrap
+# -- Compiling architecture behave of reg_file_wrap
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/memory.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/memory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity memory1
+# -- Compiling architecture Form of memory1
+# -- Compiling entity memory2
+# -- Compiling architecture Form of memory2
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 04:18:46 on Nov 03,2019
+# vcom -reportprogress 300 -93 -work work /home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity controller
+# -- Compiling architecture atrangi of controller
+# End time: 04:18:46 on Nov 03,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.risc_pipelining
+# vsim work.risc_pipelining 
+# Start time: 04:19:00 on Nov 03,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.risc_pipelining(behave)
+# Loading work.controller(atrangi)
+# Loading work.project
+# Loading work.alu(arch)
+# Loading work.adder_16bit(equations)
+# Loading work.subtractor_16bit(equations)
+# Loading work.twoscompliment(arch)
+# Loading work.nand_16bit(equations)
+# Loading work.mux_4(arch)
+# Loading work.shifter(kahipan)
+# Loading work.stage1(behave)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.memory1(form)
+# Loading work.stage2(behave)
+# Loading work.stage3(behave)
+# Loading work.stage4(behav)
+# Loading work.stage5(behav)
+# Loading work.memory2(form)
+# Loading work.stage6(behave)
+# Loading work.reg_file(behave)
+add wave *
+force -freeze sim:/risc_pipelining/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/risc_pipelining/rst 1 0
+run
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /risc_pipelining/stg5/data_mem
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /risc_pipelining/stg5/data_mem
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /risc_pipelining/stg1/code_mem
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /risc_pipelining/stg1/code_mem
+force -freeze sim:/risc_pipelining/rst 0 0
+run
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 200 ps  Iteration: 3  Instance: /risc_pipelining/stg5/data_mem
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 200 ps  Iteration: 3  Instance: /risc_pipelining/stg5/data_mem
+run
+run
+run
+run
+run
+# ** Fatal: (vsim-3734) Index value 65531 is out of range 100 downto 0.
+#    Time: 700 ps  Iteration: 3  Process: /risc_pipelining/stg5/data_mem/line__88 File: /home/parth/RISCwithPipelining/codes/memory.vhd
+# Fatal error in Architecture Form at /home/parth/RISCwithPipelining/codes/memory.vhd line 88
+# 
+# HDL call sequence:
+# Stopped at /home/parth/RISCwithPipelining/codes/memory.vhd 88 Architecture Form
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at /home/parth/RISCwithPipelining/codes/memory.vhd 88 Architecture Form
+# 
+# End time: 04:35:30 on Nov 03,2019, Elapsed time: 0:16:30
+# Errors: 3, Warnings: 6

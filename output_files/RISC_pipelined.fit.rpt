@@ -1,5 +1,5 @@
 Fitter report for RISC_pipelined
-Sun Nov  3 03:44:32 2019
+Sun Nov  3 04:17:52 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -57,7 +57,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Sun Nov  3 03:44:32 2019       ;
+; Fitter Status                      ; Successful - Sun Nov  3 04:17:52 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; RISC_pipelined                              ;
 ; Top-level Entity Name              ; risc_pipelining                             ;
@@ -856,8 +856,8 @@ Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Info (144001): Generated suppressed messages file /home/parth/RISCwithPipelining/output_files/RISC_pipelined.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 1253 megabytes
-    Info: Processing ended: Sun Nov  3 03:44:32 2019
+    Info: Peak virtual memory: 1244 megabytes
+    Info: Processing ended: Sun Nov  3 04:17:52 2019
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:05
 
