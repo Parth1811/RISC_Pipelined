@@ -6,7 +6,7 @@ This a 6 stage pipelined processor with 2 wide fetch, IITB-RISC, whose instructi
 
 ## Project by:-
 
-Parth Patil     -- 170070011
-Vaibhav Malviya -- 170070057
-Himanshu Baheti -- 170070018
-Pranjal Jain    -- 170070070
+Parth Patil     -- 170070011 <br/>
+Vaibhav Malviya -- 170070057 <br/>
+Himanshu Baheti -- 170070018 <br/>
+Pranjal Jain    -- 170070070 <br/>
