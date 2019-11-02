@@ -58,7 +58,7 @@ entity memory2 is
 	port (
 				A, Din : in std_logic_vector(15 downto 0);
 	 			clk, W : in std_logic;
-				Dout   : out std_logic_vector(8 downto 0)
+				Dout   : out std_logic_vector(15 downto 0)
 			 );
 end entity;
 
