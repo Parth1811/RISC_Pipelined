@@ -1,5 +1,5 @@
 Flow report for RISC_pipelined
-Sun Nov  3 02:54:43 2019
+Sun Nov  3 03:02:29 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun Nov  3 02:54:43 2019       ;
+; Flow Status                        ; Successful - Sun Nov  3 03:02:29 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; RISC_pipelined                              ;
 ; Top-level Entity Name              ; stage1                                      ;
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/03/2019 02:54:19 ;
+; Start date & time ; 11/03/2019 03:02:05 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; RISC_pipelined      ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+----------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value  ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+----------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 88230084370818.157272985918185         ; --             ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 88230084370818.157273032419175         ; --             ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                   ; --             ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)                 ; <None>         ; --          ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --             ; --          ; eda_simulation ;
@@ -97,12 +97,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 998 MB              ; 00:00:30                           ;
-; Fitter               ; 00:00:06     ; 1.0                     ; 1278 MB             ; 00:00:07                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 812 MB              ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 829 MB              ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 1048 MB             ; 00:00:01                           ;
-; Total                ; 00:00:20     ; --                      ; --                  ; 00:00:41                           ;
+; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 995 MB              ; 00:00:30                           ;
+; Fitter               ; 00:00:06     ; 1.0                     ; 1270 MB             ; 00:00:07                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 813 MB              ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 829 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 1047 MB             ; 00:00:01                           ;
+; Total                ; 00:00:22     ; --                      ; --                  ; 00:00:41                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

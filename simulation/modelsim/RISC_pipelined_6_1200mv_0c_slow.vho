@@ -16,7 +16,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition"
 
--- DATE "11/03/2019 02:54:43"
+-- DATE "11/03/2019 03:02:29"
 
 -- 
 -- Device: Altera EP4CE22F17C6 Package FBGA256
@@ -84,9 +84,9 @@ ENTITY 	stage1 IS
 	pc_control : IN std_logic_vector(1 DOWNTO 0);
 	reg_b_val : IN std_logic_vector(15 DOWNTO 0);
 	pc_plus_imm : IN std_logic_vector(15 DOWNTO 0);
-	ir : OUT std_logic_vector(15 DOWNTO 0);
-	pc_old : OUT std_logic_vector(15 DOWNTO 0);
-	valid_out : OUT std_logic
+	ir : BUFFER std_logic_vector(15 DOWNTO 0);
+	pc_old : BUFFER std_logic_vector(15 DOWNTO 0);
+	valid_out : BUFFER std_logic
 	);
 END stage1;
 
@@ -336,8 +336,8 @@ SIGNAL \valid_out_temp~feeder_combout\ : std_logic;
 SIGNAL \valid_out_temp~q\ : std_logic;
 SIGNAL \pc_alu|add|sum\ : std_logic_vector(15 DOWNTO 0);
 SIGNAL pc : std_logic_vector(15 DOWNTO 0);
-SIGNAL \ALT_INV_rst~inputclkctrl_outclk\ : std_logic;
 SIGNAL \ALT_INV_rst~input_o\ : std_logic;
+SIGNAL \ALT_INV_rst~inputclkctrl_outclk\ : std_logic;
 
 COMPONENT hard_block
     PORT (
@@ -383,8 +383,8 @@ ww_devpor <= devpor;
 \rst~inputclkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \rst~input_o\);
 
 \clk~inputclkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \clk~input_o\);
-\ALT_INV_rst~inputclkctrl_outclk\ <= NOT \rst~inputclkctrl_outclk\;
 \ALT_INV_rst~input_o\ <= NOT \rst~input_o\;
+\ALT_INV_rst~inputclkctrl_outclk\ <= NOT \rst~inputclkctrl_outclk\;
 auto_generated_inst : hard_block
 PORT MAP (
 	devoe => ww_devoe,

@@ -1,5 +1,5 @@
 Fitter report for RISC_pipelined
-Sun Nov  3 02:54:38 2019
+Sun Nov  3 03:02:24 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Sun Nov  3 02:54:38 2019       ;
+; Fitter Status                      ; Successful - Sun Nov  3 03:02:24 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; RISC_pipelined                              ;
 ; Top-level Entity Name              ; stage1                                      ;
@@ -1476,21 +1476,21 @@ Info (332144): No user constrained base clocks found in the design
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Info (332130): Timing requirements not specified -- quality metrics such as performance may be sacrificed to reduce compilation time.
-Info (176353): Automatically promoted node clk~input (placed in PIN E1 (CLK1, DIFFCLK_0n)) File: /home/parth/RISCwithPipelining/stage1.vhd Line: 9
+Info (176353): Automatically promoted node clk~input (placed in PIN E1 (CLK1, DIFFCLK_0n)) File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 9
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G2
-Info (176353): Automatically promoted node rst~input (placed in PIN M2 (CLK2, DIFFCLK_1p)) File: /home/parth/RISCwithPipelining/stage1.vhd Line: 9
+Info (176353): Automatically promoted node rst~input (placed in PIN M2 (CLK2, DIFFCLK_1p)) File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 9
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G4
     Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node valid_out_temp File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[15]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[14]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[13]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[12]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[11]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[10]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[9]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[8]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
-        Info (176357): Destination node pc_old[7]~reg0 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 69
+        Info (176357): Destination node valid_out_temp File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[15]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[14]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[13]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[12]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[11]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[10]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[9]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[8]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
+        Info (176357): Destination node pc_old[7]~reg0 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 69
         Info (176358): Non-global destination nodes limited to 10 nodes
 Info (176233): Starting register packing
 Info (176235): Finished register packing
@@ -1529,8 +1529,8 @@ Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Info (144001): Generated suppressed messages file /home/parth/RISCwithPipelining/output_files/RISC_pipelined.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 1278 megabytes
-    Info: Processing ended: Sun Nov  3 02:54:38 2019
+    Info: Peak virtual memory: 1270 megabytes
+    Info: Processing ended: Sun Nov  3 03:02:24 2019
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:07
 

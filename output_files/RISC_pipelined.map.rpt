@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RISC_pipelined
-Sun Nov  3 02:54:32 2019
+Sun Nov  3 03:02:17 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -53,7 +53,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Nov  3 02:54:32 2019       ;
+; Analysis & Synthesis Status        ; Successful - Sun Nov  3 03:02:17 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; RISC_pipelined                              ;
 ; Top-level Entity Name              ; stage1                                      ;
@@ -178,9 +178,9 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------+-----------------+-------------------------------------------------------+---------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path                ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                          ; Library ;
 +-------------------------------------------------+-----------------+-------------------------------------------------------+---------------------------------------------------------------------------------------+---------+
-; ALU.vhdl                                        ; yes             ; User VHDL File                                        ; /home/parth/RISCwithPipelining/ALU.vhdl                                               ;         ;
-; stage1.vhd                                      ; yes             ; User VHDL File                                        ; /home/parth/RISCwithPipelining/stage1.vhd                                             ;         ;
-; memory.vhd                                      ; yes             ; User VHDL File                                        ; /home/parth/RISCwithPipelining/memory.vhd                                             ;         ;
+; codes/ALU.vhdl                                  ; yes             ; User VHDL File                                        ; /home/parth/RISCwithPipelining/codes/ALU.vhdl                                         ;         ;
+; codes/stage1.vhd                                ; yes             ; User VHDL File                                        ; /home/parth/RISCwithPipelining/codes/stage1.vhd                                       ;         ;
+; codes/memory.vhd                                ; yes             ; User VHDL File                                        ; /home/parth/RISCwithPipelining/codes/memory.vhd                                       ;         ;
 ; altsyncram.tdf                                  ; yes             ; Megafunction                                          ; /home/parth/intelFPGA_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
 ; stratix_ram_block.inc                           ; yes             ; Megafunction                                          ; /home/parth/intelFPGA_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
 ; lpm_mux.inc                                     ; yes             ; Megafunction                                          ; /home/parth/intelFPGA_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
@@ -478,70 +478,70 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Nov  3 02:54:19 2019
+    Info: Processing started: Sun Nov  3 03:02:04 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISC_pipelined -c RISC_pipelined
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 13 design units, including 6 entities, in source file ALU.vhdl
-    Info (12022): Found design unit 1: project File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 6
-    Info (12022): Found design unit 2: adder_16bit-Equations File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 58
-    Info (12022): Found design unit 3: nand_16bit-Equations File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 88
-    Info (12022): Found design unit 4: subtractor_16bit-Equations File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 113
-    Info (12022): Found design unit 5: MUX_4-arch File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 145
-    Info (12022): Found design unit 6: TwosCompliment-arch File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 170
-    Info (12022): Found design unit 7: ALU-arch File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 206
-    Info (12023): Found entity 1: adder_16bit File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 50
-    Info (12023): Found entity 2: nand_16bit File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 82
-    Info (12023): Found entity 3: subtractor_16bit File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 107
-    Info (12023): Found entity 4: MUX_4 File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 138
-    Info (12023): Found entity 5: TwosCompliment File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 164
-    Info (12023): Found entity 6: ALU File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 197
-Info (12021): Found 2 design units, including 1 entities, in source file stage6.vhd
-    Info (12022): Found design unit 1: stage6-behave File: /home/parth/RISCwithPipelining/stage6.vhd Line: 37
-    Info (12023): Found entity 1: stage6 File: /home/parth/RISCwithPipelining/stage6.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file stage5.vhd
-    Info (12022): Found design unit 1: stage5-behave File: /home/parth/RISCwithPipelining/stage5.vhd Line: 59
-    Info (12023): Found entity 1: stage5 File: /home/parth/RISCwithPipelining/stage5.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file stage4.vhd
-    Info (12022): Found design unit 1: stage4-behav File: /home/parth/RISCwithPipelining/stage4.vhd Line: 65
-    Info (12023): Found entity 1: stage4 File: /home/parth/RISCwithPipelining/stage4.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file stage3.vhd
-    Info (12022): Found design unit 1: stage3-behave File: /home/parth/RISCwithPipelining/stage3.vhd Line: 87
-    Info (12023): Found entity 1: stage3 File: /home/parth/RISCwithPipelining/stage3.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file stage2.vhd
-    Info (12022): Found design unit 1: stage2-behave File: /home/parth/RISCwithPipelining/stage2.vhd Line: 55
-    Info (12023): Found entity 1: stage2 File: /home/parth/RISCwithPipelining/stage2.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file stage1.vhd
-    Info (12022): Found design unit 1: stage1-behave File: /home/parth/RISCwithPipelining/stage1.vhd Line: 18
-    Info (12023): Found entity 1: stage1 File: /home/parth/RISCwithPipelining/stage1.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file shifter.vhd
-    Info (12022): Found design unit 1: shifter-kahipan File: /home/parth/RISCwithPipelining/shifter.vhd Line: 9
-    Info (12023): Found entity 1: shifter File: /home/parth/RISCwithPipelining/shifter.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file risc_pipelining.vhd
-    Info (12022): Found design unit 1: risc_pipelining-behave File: /home/parth/RISCwithPipelining/risc_pipelining.vhd Line: 17
-    Info (12023): Found entity 1: risc_pipelining File: /home/parth/RISCwithPipelining/risc_pipelining.vhd Line: 6
-Info (12021): Found 4 design units, including 2 entities, in source file reg_file.vhd
-    Info (12022): Found design unit 1: reg_file-behave File: /home/parth/RISCwithPipelining/reg_file.vhd Line: 26
-    Info (12022): Found design unit 2: reg_file_wrap-behave File: /home/parth/RISCwithPipelining/reg_file.vhd Line: 146
-    Info (12023): Found entity 1: reg_file File: /home/parth/RISCwithPipelining/reg_file.vhd Line: 6
-    Info (12023): Found entity 2: reg_file_wrap File: /home/parth/RISCwithPipelining/reg_file.vhd Line: 127
-Info (12021): Found 4 design units, including 2 entities, in source file memory.vhd
-    Info (12022): Found design unit 1: memory1-Form File: /home/parth/RISCwithPipelining/memory.vhd Line: 18
-    Info (12022): Found design unit 2: memory2-Form File: /home/parth/RISCwithPipelining/memory.vhd Line: 65
-    Info (12023): Found entity 1: memory1 File: /home/parth/RISCwithPipelining/memory.vhd Line: 9
-    Info (12023): Found entity 2: memory2 File: /home/parth/RISCwithPipelining/memory.vhd Line: 57
-Info (12021): Found 2 design units, including 1 entities, in source file lm_sm_fsm.vhd
-    Info (12022): Found design unit 1: controller-atrangi File: /home/parth/RISCwithPipelining/lm_sm_fsm.vhd Line: 33
-    Info (12023): Found entity 1: controller File: /home/parth/RISCwithPipelining/lm_sm_fsm.vhd Line: 5
+Info (12021): Found 13 design units, including 6 entities, in source file codes/ALU.vhdl
+    Info (12022): Found design unit 1: project File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 6
+    Info (12022): Found design unit 2: adder_16bit-Equations File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 58
+    Info (12022): Found design unit 3: nand_16bit-Equations File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 88
+    Info (12022): Found design unit 4: subtractor_16bit-Equations File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 113
+    Info (12022): Found design unit 5: MUX_4-arch File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 145
+    Info (12022): Found design unit 6: TwosCompliment-arch File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 170
+    Info (12022): Found design unit 7: ALU-arch File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 206
+    Info (12023): Found entity 1: adder_16bit File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 50
+    Info (12023): Found entity 2: nand_16bit File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 82
+    Info (12023): Found entity 3: subtractor_16bit File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 107
+    Info (12023): Found entity 4: MUX_4 File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 138
+    Info (12023): Found entity 5: TwosCompliment File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 164
+    Info (12023): Found entity 6: ALU File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 197
+Info (12021): Found 2 design units, including 1 entities, in source file codes/stage6.vhd
+    Info (12022): Found design unit 1: stage6-behave File: /home/parth/RISCwithPipelining/codes/stage6.vhd Line: 37
+    Info (12023): Found entity 1: stage6 File: /home/parth/RISCwithPipelining/codes/stage6.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file codes/stage5.vhd
+    Info (12022): Found design unit 1: stage5-behave File: /home/parth/RISCwithPipelining/codes/stage5.vhd Line: 59
+    Info (12023): Found entity 1: stage5 File: /home/parth/RISCwithPipelining/codes/stage5.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file codes/stage4.vhd
+    Info (12022): Found design unit 1: stage4-behav File: /home/parth/RISCwithPipelining/codes/stage4.vhd Line: 65
+    Info (12023): Found entity 1: stage4 File: /home/parth/RISCwithPipelining/codes/stage4.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file codes/stage3.vhd
+    Info (12022): Found design unit 1: stage3-behave File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 87
+    Info (12023): Found entity 1: stage3 File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file codes/stage2.vhd
+    Info (12022): Found design unit 1: stage2-behave File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 55
+    Info (12023): Found entity 1: stage2 File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file codes/stage1.vhd
+    Info (12022): Found design unit 1: stage1-behave File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 18
+    Info (12023): Found entity 1: stage1 File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file codes/shifter.vhd
+    Info (12022): Found design unit 1: shifter-kahipan File: /home/parth/RISCwithPipelining/codes/shifter.vhd Line: 9
+    Info (12023): Found entity 1: shifter File: /home/parth/RISCwithPipelining/codes/shifter.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file codes/risc_pipelining.vhd
+    Info (12022): Found design unit 1: risc_pipelining-behave File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 17
+    Info (12023): Found entity 1: risc_pipelining File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 6
+Info (12021): Found 4 design units, including 2 entities, in source file codes/reg_file.vhd
+    Info (12022): Found design unit 1: reg_file-behave File: /home/parth/RISCwithPipelining/codes/reg_file.vhd Line: 26
+    Info (12022): Found design unit 2: reg_file_wrap-behave File: /home/parth/RISCwithPipelining/codes/reg_file.vhd Line: 146
+    Info (12023): Found entity 1: reg_file File: /home/parth/RISCwithPipelining/codes/reg_file.vhd Line: 6
+    Info (12023): Found entity 2: reg_file_wrap File: /home/parth/RISCwithPipelining/codes/reg_file.vhd Line: 127
+Info (12021): Found 4 design units, including 2 entities, in source file codes/memory.vhd
+    Info (12022): Found design unit 1: memory1-Form File: /home/parth/RISCwithPipelining/codes/memory.vhd Line: 18
+    Info (12022): Found design unit 2: memory2-Form File: /home/parth/RISCwithPipelining/codes/memory.vhd Line: 65
+    Info (12023): Found entity 1: memory1 File: /home/parth/RISCwithPipelining/codes/memory.vhd Line: 9
+    Info (12023): Found entity 2: memory2 File: /home/parth/RISCwithPipelining/codes/memory.vhd Line: 57
+Info (12021): Found 2 design units, including 1 entities, in source file codes/lm_sm_fsm.vhd
+    Info (12022): Found design unit 1: controller-atrangi File: /home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd Line: 33
+    Info (12023): Found entity 1: controller File: /home/parth/RISCwithPipelining/codes/lm_sm_fsm.vhd Line: 5
 Info (12127): Elaborating entity "stage1" for the top level hierarchy
-Info (12128): Elaborating entity "ALU" for hierarchy "ALU:pc_alu" File: /home/parth/RISCwithPipelining/stage1.vhd Line: 49
-Info (12128): Elaborating entity "adder_16bit" for hierarchy "ALU:pc_alu|adder_16bit:add" File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 211
-Info (12128): Elaborating entity "subtractor_16bit" for hierarchy "ALU:pc_alu|subtractor_16bit:subtractor" File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 214
-Warning (10036): Verilog HDL or VHDL warning at ALU.vhdl(116): object "C_trash" assigned a value but never read File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 116
-Info (12128): Elaborating entity "TwosCompliment" for hierarchy "ALU:pc_alu|subtractor_16bit:subtractor|TwosCompliment:tc" File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 120
-Info (12128): Elaborating entity "nand_16bit" for hierarchy "ALU:pc_alu|nand_16bit:nand1" File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 217
-Info (12128): Elaborating entity "MUX_4" for hierarchy "ALU:pc_alu|MUX_4:mux_alu" File: /home/parth/RISCwithPipelining/ALU.vhdl Line: 220
-Info (12128): Elaborating entity "memory1" for hierarchy "memory1:code_mem" File: /home/parth/RISCwithPipelining/stage1.vhd Line: 57
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:pc_alu" File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 49
+Info (12128): Elaborating entity "adder_16bit" for hierarchy "ALU:pc_alu|adder_16bit:add" File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 211
+Info (12128): Elaborating entity "subtractor_16bit" for hierarchy "ALU:pc_alu|subtractor_16bit:subtractor" File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 214
+Warning (10036): Verilog HDL or VHDL warning at ALU.vhdl(116): object "C_trash" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 116
+Info (12128): Elaborating entity "TwosCompliment" for hierarchy "ALU:pc_alu|subtractor_16bit:subtractor|TwosCompliment:tc" File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 120
+Info (12128): Elaborating entity "nand_16bit" for hierarchy "ALU:pc_alu|nand_16bit:nand1" File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 217
+Info (12128): Elaborating entity "MUX_4" for hierarchy "ALU:pc_alu|MUX_4:mux_alu" File: /home/parth/RISCwithPipelining/codes/ALU.vhdl Line: 220
+Info (12128): Elaborating entity "memory1" for hierarchy "memory1:code_mem" File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 57
 Info (19000): Inferred 1 megafunctions from design logic
     Info (276029): Inferred altsyncram megafunction from the following design logic: "memory1:code_mem|Memory_rtl_0" 
         Info (286033): Parameter OPERATION_MODE set to ROM
@@ -577,8 +577,8 @@ Info (21057): Implemented 134 device resources after synthesis - the final resou
     Info (21061): Implemented 48 logic cells
     Info (21064): Implemented 16 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 1013 megabytes
-    Info: Processing ended: Sun Nov  3 02:54:32 2019
+    Info: Peak virtual memory: 1002 megabytes
+    Info: Processing ended: Sun Nov  3 03:02:17 2019
     Info: Elapsed time: 00:00:13
     Info: Total CPU time (on all processors): 00:00:30
 
