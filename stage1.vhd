@@ -29,54 +29,48 @@ architecture behave of stage1 is
   component memory1 is
 
     port (
-    	  clk, wr             : in std_logic;
-    	  mema                : in std_logic_vector(15 downto 0);
-        membw1, membw2      : in std_logic_vector(7 downto 0);
-        membr1, membr2      : out std_logic_vector(7 downto 0)
+    	  clk, W      : in std_logic;
+    	  A, Din      : in std_logic_vector(15 downto 0);
+        Dout        : out std_logic_vector(15 downto 0)
     );
 
   end component ;
 
   signal pc, ir1 :std_logic_vector (15 downto 0);
-  signal pc_out : std_logic_vector(15 downto 0):= (others => '0');
-  signal membr1,membr2,membw1,membw2 : std_logic_vector (7 downto 0);
-  signal carry1,zero1 : std_logic;
   signal valid_out_temp : std_logic := '0';
-
+  signal pc_temp : std_logic_vector(15 downto 0):= (others => '0');
+  constant Z16 : std_logic_vector(15 downto 0):= (others  => '0');
+  
+  
  begin
 
-  ir1 <= membr1 & membr2;
   valid_out <= valid_out_temp;
 
   pc_alu: alu
 	port map(
-       A      =>  pc,
-    	 B      =>  x"0001",
-    	 OP       =>  "00" ,
-    	 O     =>  pc_out,
-    	 C        =>  carry1,
-    	 Z        =>  zero1
+       A    =>  pc,
+    	 B    =>  x"0001",
+    	 OP   =>  "00" ,
+    	 O    =>  pc_temp
   );
 
  code_mem: memory1
     port map (
-    	  clk       => clk ,
-    	  mema      => pc,
-        membr1    => membr1,
-    		membr2    => membr2,
-    	  membw1    => membw1,
-    		membw2    => membw2,
-    	  wr        => '0'
+    	  clk   => clk ,
+    	  A     => pc,
+        Dout  => ir1,
+        Din   => Z16,
+        W     => '0'
     );
 
 
   stg1: process(clk,rst)
    begin
      if rst = '1' then
-        pc <= x"0000";
+        pc <= Z16;
      elsif rising_edge(clk) then
         case pc_control is
-            when "00"   =>  pc <= pc_out;
+            when "00"   =>  pc <= pc_temp;
             when "01"   =>  pc <= pc_plus_imm;
             when others =>  pc <= reg_b_val;
         end case;
