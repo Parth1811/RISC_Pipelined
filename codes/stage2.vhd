@@ -38,6 +38,26 @@ architecture behave of stage2 is
 		);
 	end component;
 
+  function check_hazard(a, b : in std_logic_vector) return std_logic is
+	  variable hazard : std_logic := '0';
+		begin
+		  for i in a'range loop
+		    hazard :=  hazard or (a(i) xor b(i));
+		  end loop;
+      hazard := not hazard;
+	  return hazard;
+	end function;
+
+  function Check_instr(ir, inst : in std_logic_vector; rst : in std_logic) return std_logic is
+	  variable yes : std_logic := '1';
+		begin
+      for i in inst'range loop
+        yes := yes and (not (ir(12+i) xor inst(i)));
+      end loop;
+      yes := yes and (not rst);
+	  return yes;
+	end function;
+
   signal yin,imm6_16,imm9_se_16 : std_logic_vector(15 downto 0);
   signal r_a1,r_a2,r_a3,r_b,r_c,r_a,r_a_hzrdn,r_b_hzrdn,r_c_hzrdn,r_a_hzrdx,r_b_hzrdx,r_c_hzrdx : std_logic_vector(2 downto 0);
   signal carry1,zero1,pc_plus_imm_ctl: std_logic;
@@ -64,7 +84,6 @@ architecture behave of stage2 is
    imm6_16(5 downto 0) <= ir(5 downto 0);
    imm6_16(15 downto 6) <= (others => '0');
 
-   jal_yes1 <= ((ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12))) and (not rst);
    imm9_se_16(8 downto 0) <= ir(8 downto 0);
    imm9_se_16(15 downto 9) <= (others => '0');
 
@@ -74,20 +93,21 @@ architecture behave of stage2 is
    pc_plus_imm_ctl <= (not ((ir(15)) and (ir(14)) and (not ir(13)) and (not ir(12)))) and
                    ((ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12)));
 
-   adi_yes1 <= ((not ir(15)) and (not ir(14)) and (not ir(13)) and (ir(12)))and (not rst);
-   lw_yes1 <= ((not ir(15)) and (ir(14)) and (not ir(13)) and (not ir(12)))and (not rst);
-   lm_yes1 <= ((not ir(15)) and (ir(14)) and (ir(13)) and (not ir(12))) and (not rst);
-   sm_yes1 <= ((not ir(15)) and (ir(14)) and (ir(13)) and (ir(12))) and (not rst);
-   beq_yes1 <= ((ir(15)) and ir(14) and (not ir(13)) and (not ir(12))) and (not rst);
-   lhi_yes1 <= ((not ir(15)) and (not ir(14)) and (ir(13)) and (ir(12))) and (not rst);
-   sw_yes1 <= ((not ir(15)) and (ir(14)) and (not ir(13)) and (ir(12))) and (not rst);
-   jlr_yes1 <= ((ir(15)) and (not ir(14)) and (not ir(13)) and (ir(12))) and (not rst);
+   jal_yes1 <= Check_instr(ir, "1000", rst);
+   adi_yes1 <= Check_instr(ir, "0001", rst);
+   lw_yes1  <= Check_instr(ir, "0100", rst);
+   lm_yes1  <= Check_instr(ir, "0110", rst);
+   sm_yes1  <= Check_instr(ir, "0111", rst);
+   beq_yes1 <= Check_instr(ir, "1100", rst);
+   lhi_yes1 <= Check_instr(ir, "0011", rst);
+   sw_yes1  <= Check_instr(ir, "0101", rst);
+   jlr_yes1 <= Check_instr(ir, "1001", rst);
 
    reg_a_addr <= r_a1;
 
-   r_a_hzrd1 <= not ((r_a1(0) xor r_a(0)) or (r_a1(1) xor r_a(1)) or (r_a1(2) xor r_a(2)));
-   r_b_hzrd1 <= not ((r_a1(0) xor r_b(0)) or (r_a1(1) xor r_b(1)) or (r_a1(2) xor r_b(2))); --and (not(lm_yes1 or sm_yes1 or lhi_yes1 or jal_yes1)) ;
-   r_c_hzrd1 <= not ((r_a1(0) xor r_c(0)) or (r_a1(1) xor r_c(1)) or (r_a1(2) xor r_c(2))); --and (not(lw_yes1 or adi_yes1 or lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1 or jal_yes1 or lhi_yes1))) or ((not ((r_a1(0) xor r_a(0)) or (r_a1(2) xor r_a(2)) or (r_a1(2) xor r_a(2))))and (( lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1)));
+   r_a_hzrd1 <= check_hazard(r_a1, r_a);
+   r_b_hzrd1 <= check_hazard(r_a1, r_b);
+   r_c_hzrd1 <= check_hazard(r_a1, r_c);
 
    load_hzrd_out_2 <=  (lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_b_hzrd1)) or (lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_c_hzrd1));
 
@@ -116,11 +136,8 @@ architecture behave of stage2 is
         imm9 <= ir(8 downto 0);
         pc_old_o <= pc_old_i;
 
-        carry_yes <= ((not ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12)) and (ir(1)) and (not ir(0)))
-                      or ((not ir(15)) and (not ir(14)) and (ir(13)) and (not ir(12)) and (ir(1)) and (not ir(0)));
-
-        zero_yes <= ((not ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12)) and (not ir(1)) and (ir(0)))
-                      or ((not ir(15)) and (not ir(14)) and (ir(13)) and (not ir(12)) and (not ir(1)) and (ir(0)));
+        carry_yes <= (Check_instr(ir, "0000", '0') or Check_instr(ir, "0010", '0')) and ir(1) and (not ir(0));
+        zero_yes  <= (Check_instr(ir, "0000", '0') or Check_instr(ir, "0010", '0')) and (not ir(1)) and ir(0);
 
         reg_addr2_ctl_3 <= ir(14) or ir(12);
         input_alu2_ctl_4(1) <= '0';
@@ -138,17 +155,17 @@ architecture behave of stage2 is
         lm_out_2 <= lm_yes1;
         sm_out_2 <= sm_yes1;
 
-        r_a_hzrdn(0) <= (not ((r_a1(0) xor r_a(0)) or (r_a1(1) xor r_a(1)) or (r_a1(2) xor r_a(2))));-- and (not(lm_yes1 or sm_yes1 or lhi_yes1 or jal_yes1)) ;
-        r_a_hzrdn(1) <= (not ((r_a2(0) xor r_a(0)) or (r_a2(1) xor r_a(1)) or (r_a2(2) xor r_a(2)))) ;--and (not(lm_yes1 or sm_yes1 or lhi_yes1 or jal_yes1)) ;
-        r_a_hzrdn(2) <= (not ((r_a3(0) xor r_a(0)) or (r_a3(1) xor r_a(1)) or (r_a3(2) xor r_a(2))));
+        r_a_hzrdn(0) <= check_hazard(r_a1, r_a);
+        r_a_hzrdn(1) <= check_hazard(r_a2, r_a);
+        r_a_hzrdn(2) <= check_hazard(r_a3, r_a);
 
-        r_b_hzrdn(0) <= (not ((r_a1(0) xor r_b(0)) or (r_a1(1) xor r_b(1)) or (r_a1(2) xor r_b(2))));-- and (not(lm_yes1 or sm_yes1 or lhi_yes1 or jal_yes1)) ;
-        r_b_hzrdn(1) <= (not ((r_a2(0) xor r_b(0)) or (r_a2(1) xor r_b(1)) or (r_a2(2) xor r_b(2)))) ;--and (not(lm_yes1 or sm_yes1 or lhi_yes1 or jal_yes1)) ;
-        r_b_hzrdn(2) <= (not ((r_a3(0) xor r_b(0)) or (r_a3(1) xor r_b(1)) or (r_a3(2) xor r_b(2))));-- and (not(lm_yes1 or sm_yes1 or lhi_yes1 or jal_yes1)) ;
+        r_b_hzrdn(0) <= check_hazard(r_a1, r_b);
+        r_b_hzrdn(1) <= check_hazard(r_a2, r_b);
+        r_b_hzrdn(2) <= check_hazard(r_a3, r_b);
 
-        r_c_hzrdn(0) <= (not ((r_a1(0) xor r_c(0)) or (r_a1(1) xor r_c(1)) or (r_a1(2) xor r_c(2)))) ;--and (not(lw_yes1 or adi_yes1 or lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1 or jal_yes1 or lhi_yes1))) or ((not ((r_a1(0) xor r_a(0)) or (r_a1(1) xor r_a(1)) or (r_a1(2) xor r_a(2))))and (( lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1)));
-        r_c_hzrdn(1) <= (not ((r_a2(0) xor r_c(0)) or (r_a2(1) xor r_c(1)) or (r_a2(2) xor r_c(2)))) ;--and (not(lw_yes1 or adi_yes1 or lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1 or jal_yes1 or lhi_yes1))) or ((not ((r_a2(0) xor r_a(0)) or (r_a2(1) xor r_a(1)) or (r_a2(2) xor r_a(2))))and (( lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1)));
-        r_c_hzrdn(2) <= (not ((r_a3(0) xor r_c(0)) or (r_a3(1) xor r_c(1)) or (r_a3(2) xor r_c(2))));-- and (not(lw_yes1 or adi_yes1 or lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1 or jal_yes1 or lhi_yes1))) or ((not ((r_a3(0) xor r_a(0)) or (r_a3(1) xor r_a(1)) or (r_a3(2) xor r_a(2))))and (( lm_yes1 or sm_yes1 or beq_yes1 or sw_yes1)));
+        r_c_hzrdn(0) <= check_hazard(r_a1, r_c);
+        r_c_hzrdn(1) <= check_hazard(r_a2, r_c);
+        r_c_hzrdn(2) <= check_hazard(r_a3, r_c);
 
         read_from_a <= lm_yes1 or sm_yes1 or sw_yes1 or beq_yes1;
 

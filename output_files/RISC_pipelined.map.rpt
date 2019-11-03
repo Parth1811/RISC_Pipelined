@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RISC_pipelined
-Sun Nov  3 04:17:47 2019
+Sun Nov  3 05:42:15 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -60,7 +60,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Nov  3 04:17:47 2019       ;
+; Analysis & Synthesis Status        ; Successful - Sun Nov  3 05:42:15 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; RISC_pipelined                              ;
 ; Top-level Entity Name              ; risc_pipelining                             ;
@@ -2376,7 +2376,7 @@ Encoding Type:  One-Hot
 ;                                          ;                           ; stage5:stg5|stage_5_out[0], stage5:stg5|pc_old_o[0], stage3:stg3|pc_old_o[0],           ;
 ;                                          ;                           ; stage2:stg2|pc_old_o[0], controller:controller1|state.S0,                               ;
 ;                                          ;                           ; stage4:stg4|reg_inp_data_ctl_6_o, controller:controller1|state.lukhi1,                  ;
-;                                          ;                           ; stage2:stg2|r_a2[0], stage2:stg2|r_a2[1], stage2:stg2|r_a2[2],                          ;
+;                                          ;                           ; stage2:stg2|r_a2[2], stage2:stg2|r_a2[1], stage2:stg2|r_a2[0],                          ;
 ;                                          ;                           ; controller:controller1|state.S1, controller:controller1|state.S4,                       ;
 ;                                          ;                           ; stage3:stg3|output_ctrl_5_o, stage2:stg2|output_ctrl_4, stage4:stg4|t2_out[0],          ;
 ;                                          ;                           ; stage2:stg2|lm_out_2, stage2:stg2|sm_out_2, stage2:stg2|output_ctrl_5,                  ;
@@ -2424,13 +2424,6 @@ Encoding Type:  One-Hot
 ;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~1407, stage4:stg4|pc_old_o[7],                     ;
 ;                                          ;                           ; stage3:stg3|pc_old_o[7], stage2:stg2|pc_old_o[7], stage4:stg4|t2_out[7],                ;
 ;                                          ;                           ; controller:controller1|reg_val[7]                                                       ;
-; stage3:stg3|reg_b_val[3]                 ; Lost Fanouts              ; stage5:stg5|stage_5_out[3], stage5:stg5|pc_old_o[3],                                    ;
-;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~235, stage5:stg5|memory2:data_mem|Memory2~747,     ;
-;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~491, stage5:stg5|memory2:data_mem|Memory2~267,     ;
-;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~1099,                                              ;
-;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~1355, stage4:stg4|pc_old_o[3],                     ;
-;                                          ;                           ; stage3:stg3|pc_old_o[3], stage2:stg2|pc_old_o[3], stage4:stg4|t2_out[3],                ;
-;                                          ;                           ; controller:controller1|reg_val[3]                                                       ;
 ; stage3:stg3|reg_b_val[1]                 ; Lost Fanouts              ; stage5:stg5|stage_5_out[1], stage5:stg5|pc_old_o[1],                                    ;
 ;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~201, stage5:stg5|memory2:data_mem|Memory2~457,     ;
 ;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~713, stage5:stg5|memory2:data_mem|Memory2~265,     ;
@@ -2445,6 +2438,13 @@ Encoding Type:  One-Hot
 ;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~1357, stage4:stg4|pc_old_o[5],                     ;
 ;                                          ;                           ; stage3:stg3|pc_old_o[5], stage2:stg2|pc_old_o[5], stage4:stg4|t2_out[5],                ;
 ;                                          ;                           ; controller:controller1|reg_val[5]                                                       ;
+; stage3:stg3|reg_b_val[3]                 ; Lost Fanouts              ; stage5:stg5|stage_5_out[3], stage5:stg5|pc_old_o[3],                                    ;
+;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~235, stage5:stg5|memory2:data_mem|Memory2~747,     ;
+;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~491, stage5:stg5|memory2:data_mem|Memory2~267,     ;
+;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~1099,                                              ;
+;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~1355, stage4:stg4|pc_old_o[3],                     ;
+;                                          ;                           ; stage3:stg3|pc_old_o[3], stage2:stg2|pc_old_o[3], stage4:stg4|t2_out[3],                ;
+;                                          ;                           ; controller:controller1|reg_val[3]                                                       ;
 ; stage3:stg3|reg_b_val[8]                 ; Lost Fanouts              ; stage3:stg3|imm6_o[1], stage4:stg4|alu_out[8],                                          ;
 ;                                          ;                           ; stage5:stg5|memory2:data_mem|Memory2~384, stage4:stg4|pc_old_o[8],                      ;
 ;                                          ;                           ; stage5:stg5|stage_5_out[8], stage5:stg5|pc_old_o[8], stage3:stg3|pc_old_o[8],           ;
@@ -2473,38 +2473,38 @@ Encoding Type:  One-Hot
 ;                                          ;                           ; stage2:stg2|pc_old_o[2], stage4:stg4|t2_out[2], controller:controller1|reg_val[2]       ;
 ; stage3:stg3|t2[1]                        ; Lost Fanouts              ; stage2:stg2|r_c_hzrdn[1], stage2:stg2|imm6[3], stage2:stg2|imm6[5],                     ;
 ;                                          ;                           ; reg_file:reg_read_write|r2[1], reg_file:reg_read_write|r5[1]                            ;
-; stage3:stg3|t2[2]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[2], reg_file:reg_read_write|r5[2],                           ;
-;                                          ;                           ; reg_file:reg_read_write|r6[2], reg_file:reg_read_write|r4[2]                            ;
 ; stage3:stg3|t2[14]                       ; Lost Fanouts              ; reg_file:reg_read_write|r2[14], reg_file:reg_read_write|r5[14],                         ;
 ;                                          ;                           ; reg_file:reg_read_write|r6[14], reg_file:reg_read_write|r4[14]                          ;
-; stage3:stg3|t2[4]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[4], reg_file:reg_read_write|r5[4],                           ;
-;                                          ;                           ; reg_file:reg_read_write|r6[4], reg_file:reg_read_write|r4[4]                            ;
-; stage2:stg2|load_hzrd_out_2b             ; Lost Fanouts              ; stage2:stg2|r_a1[0], stage2:stg2|r_a1[1], stage2:stg2|r_a1[2], stage2:stg2|lw_prev1     ;
 ; stage2:stg2|jlr_yes                      ; Lost Fanouts              ; stage1:stg1|pc[0], stage1:stg1|pc[1], stage1:stg1|pc[2], stage1:stg1|pc[3]              ;
-; stage3:stg3|t2[8]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[8], reg_file:reg_read_write|r5[8],                           ;
-;                                          ;                           ; reg_file:reg_read_write|r6[8], reg_file:reg_read_write|r4[8]                            ;
 ; stage3:stg3|t2[12]                       ; Lost Fanouts              ; reg_file:reg_read_write|r2[12], reg_file:reg_read_write|r5[12],                         ;
 ;                                          ;                           ; reg_file:reg_read_write|r6[12], reg_file:reg_read_write|r4[12]                          ;
-; stage2:stg2|r_b_hzrdn[2]                 ; Lost Fanouts              ; stage2:stg2|r_a3[0], stage2:stg2|r_a3[1], stage2:stg2|r_a3[2]                           ;
-; stage2:stg2|valid_out1                   ; Lost Fanouts              ; stage2:stg2|beq_yes, stage1:stg1|valid_out_temp, stage1:stg1|pc[4]                      ;
-; reg_file:reg_read_write|r7[14]           ; Lost Fanouts              ; stage1:stg1|pc_old[14], stage1:stg1|pc[14]                                              ;
-; reg_file:reg_read_write|r7[15]           ; Lost Fanouts              ; stage1:stg1|pc_old[15], stage1:stg1|pc[15]                                              ;
-; reg_file:reg_read_write|r7[9]            ; Lost Fanouts              ; stage1:stg1|pc_old[9], stage1:stg1|pc[9]                                                ;
-; reg_file:reg_read_write|r7[13]           ; Lost Fanouts              ; stage1:stg1|pc_old[13], stage1:stg1|pc[13]                                              ;
+; stage3:stg3|t2[8]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[8], reg_file:reg_read_write|r5[8],                           ;
+;                                          ;                           ; reg_file:reg_read_write|r6[8], reg_file:reg_read_write|r4[8]                            ;
+; stage2:stg2|load_hzrd_out_2b             ; Lost Fanouts              ; stage2:stg2|r_a1[0], stage2:stg2|r_a1[1], stage2:stg2|r_a1[2], stage2:stg2|lw_prev1     ;
+; stage3:stg3|t2[4]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[4], reg_file:reg_read_write|r5[4],                           ;
+;                                          ;                           ; reg_file:reg_read_write|r6[4], reg_file:reg_read_write|r4[4]                            ;
+; stage3:stg3|t2[2]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[2], reg_file:reg_read_write|r5[2],                           ;
+;                                          ;                           ; reg_file:reg_read_write|r6[2], reg_file:reg_read_write|r4[2]                            ;
+; stage2:stg2|r_b_hzrdn[2]                 ; Lost Fanouts              ; stage2:stg2|r_a3[2], stage2:stg2|r_a3[1], stage2:stg2|r_a3[0]                           ;
 ; reg_file:reg_read_write|r7[12]           ; Lost Fanouts              ; stage1:stg1|pc_old[12], stage1:stg1|pc[12]                                              ;
-; reg_file:reg_read_write|r7[6]            ; Lost Fanouts              ; stage1:stg1|pc_old[6], stage1:stg1|pc[6]                                                ;
-; reg_file:reg_read_write|r7[7]            ; Lost Fanouts              ; stage1:stg1|pc_old[7], stage1:stg1|pc[7]                                                ;
-; reg_file:reg_read_write|r7[11]           ; Lost Fanouts              ; stage1:stg1|pc_old[11], stage1:stg1|pc[11]                                              ;
+; reg_file:reg_read_write|r7[9]            ; Lost Fanouts              ; stage1:stg1|pc_old[9], stage1:stg1|pc[9]                                                ;
 ; reg_file:reg_read_write|r7[8]            ; Lost Fanouts              ; stage1:stg1|pc_old[8], stage1:stg1|pc[8]                                                ;
-; reg_file:reg_read_write|r7[10]           ; Lost Fanouts              ; stage1:stg1|pc_old[10], stage1:stg1|pc[10]                                              ;
+; reg_file:reg_read_write|r7[11]           ; Lost Fanouts              ; stage1:stg1|pc_old[11], stage1:stg1|pc[11]                                              ;
+; reg_file:reg_read_write|r7[7]            ; Lost Fanouts              ; stage1:stg1|pc_old[7], stage1:stg1|pc[7]                                                ;
+; reg_file:reg_read_write|r7[13]           ; Lost Fanouts              ; stage1:stg1|pc_old[13], stage1:stg1|pc[13]                                              ;
+; reg_file:reg_read_write|r7[6]            ; Lost Fanouts              ; stage1:stg1|pc_old[6], stage1:stg1|pc[6]                                                ;
 ; stage3:stg3|t2[7]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[7], reg_file:reg_read_write|r5[7]                            ;
+; reg_file:reg_read_write|r7[14]           ; Lost Fanouts              ; stage1:stg1|pc_old[14], stage1:stg1|pc[14]                                              ;
+; reg_file:reg_read_write|r7[10]           ; Lost Fanouts              ; stage1:stg1|pc_old[10], stage1:stg1|pc[10]                                              ;
+; reg_file:reg_read_write|r7[15]           ; Lost Fanouts              ; stage1:stg1|pc_old[15], stage1:stg1|pc[15]                                              ;
 ; stage5:stg5|memory2:data_mem|Memory2~439 ; Lost Fanouts              ; mem_addr_in[3], controller:controller1|next_mem_addr[3]                                 ;
-; stage3:stg3|t2[13]                       ; Lost Fanouts              ; reg_file:reg_read_write|r2[13], reg_file:reg_read_write|r5[13]                          ;
-; stage3:stg3|t2[9]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[9], reg_file:reg_read_write|r5[9]                            ;
-; stage3:stg3|t2[3]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[3], reg_file:reg_read_write|r5[3]                            ;
-; stage3:stg3|reg_b_val[15]                ; Lost Fanouts              ; stage3:stg3|pc_old_o[15], stage2:stg2|pc_old_o[15]                                      ;
+; stage2:stg2|valid_out1                   ; Lost Fanouts              ; stage2:stg2|beq_yes, stage1:stg1|valid_out_temp                                         ;
 ; controller:controller1|state.S5          ; Lost Fanouts              ; controller:controller1|state.S6, controller:controller1|state.lukhi2                    ;
-; stage2:stg2|imm9[7]                      ; Lost Fanouts              ; stage1:stg1|pc[5]                                                                       ;
+; stage3:stg3|reg_b_val[15]                ; Lost Fanouts              ; stage3:stg3|pc_old_o[15], stage2:stg2|pc_old_o[15]                                      ;
+; stage3:stg3|t2[3]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[3], reg_file:reg_read_write|r5[3]                            ;
+; stage3:stg3|t2[9]                        ; Lost Fanouts              ; reg_file:reg_read_write|r2[9], reg_file:reg_read_write|r5[9]                            ;
+; stage3:stg3|t2[13]                       ; Lost Fanouts              ; reg_file:reg_read_write|r2[13], reg_file:reg_read_write|r5[13]                          ;
+; stage2:stg2|imm9[7]                      ; Lost Fanouts              ; stage1:stg1|pc[4], stage1:stg1|pc[5]                                                    ;
 ; stage3:stg3|imm6_o[2]                    ; Lost Fanouts              ; stage2:stg2|imm6[2]                                                                     ;
 ; stage3:stg3|zero_yes_o                   ; Lost Fanouts              ; stage2:stg2|zero_yes                                                                    ;
 ; stage5:stg5|pc_old_o[15]                 ; Lost Fanouts              ; stage4:stg4|pc_old_o[15]                                                                ;
@@ -2779,7 +2779,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Nov  3 04:17:31 2019
+    Info: Processing started: Sun Nov  3 05:41:58 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISC_pipelined -c RISC_pipelined
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -2870,25 +2870,25 @@ Info (12128): Elaborating entity "shifter" for hierarchy "shifter:shifter1" File
 Info (12128): Elaborating entity "stage1" for hierarchy "stage1:stg1" File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 473
 Info (12128): Elaborating entity "memory1" for hierarchy "stage1:stg1|memory1:code_mem" File: /home/parth/RISCwithPipelining/codes/stage1.vhd Line: 57
 Info (12128): Elaborating entity "stage2" for hierarchy "stage2:stg2" File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 488
-Warning (10036): Verilog HDL or VHDL warning at stage2.vhd(43): object "carry1" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at stage2.vhd(43): object "zero1" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at stage2.vhd(44): object "adi_yes1" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 44
-Info (10041): Inferred latch for "yin[0]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[1]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[2]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[3]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[4]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[5]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[6]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[7]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[8]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[9]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[10]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[11]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[12]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[13]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[14]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
-Info (10041): Inferred latch for "yin[15]" at stage2.vhd(71) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 71
+Warning (10036): Verilog HDL or VHDL warning at stage2.vhd(63): object "carry1" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 63
+Warning (10036): Verilog HDL or VHDL warning at stage2.vhd(63): object "zero1" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 63
+Warning (10036): Verilog HDL or VHDL warning at stage2.vhd(64): object "adi_yes1" assigned a value but never read File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 64
+Info (10041): Inferred latch for "yin[0]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[1]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[2]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[3]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[4]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[5]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[6]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[7]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[8]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[9]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[10]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[11]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[12]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[13]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[14]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
+Info (10041): Inferred latch for "yin[15]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
 Info (12128): Elaborating entity "stage3" for hierarchy "stage3:stg3" File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 536
 Info (10041): Inferred latch for "rf_a2[0]" at stage3.vhd(126) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 126
 Info (10041): Inferred latch for "rf_a2[1]" at stage3.vhd(126) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 126
@@ -3085,9 +3085,9 @@ Info (21057): Implemented 2 device resources after synthesis - the final resourc
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 100 warnings
-    Info: Peak virtual memory: 1005 megabytes
-    Info: Processing ended: Sun Nov  3 04:17:47 2019
-    Info: Elapsed time: 00:00:16
+    Info: Peak virtual memory: 1008 megabytes
+    Info: Processing ended: Sun Nov  3 05:42:15 2019
+    Info: Elapsed time: 00:00:17
     Info: Total CPU time (on all processors): 00:00:35
 
 
