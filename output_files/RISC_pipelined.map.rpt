@@ -1,5 +1,5 @@
 Analysis & Synthesis report for RISC_pipelined
-Sun Nov  3 05:42:15 2019
+Sun Nov  3 06:24:39 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -60,7 +60,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Nov  3 05:42:15 2019       ;
+; Analysis & Synthesis Status        ; Successful - Sun Nov  3 06:24:39 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; RISC_pipelined                              ;
 ; Top-level Entity Name              ; risc_pipelining                             ;
@@ -2779,7 +2779,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Nov  3 05:41:58 2019
+    Info: Processing started: Sun Nov  3 06:24:22 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RISC_pipelined -c RISC_pipelined
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -2807,7 +2807,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file codes/s
     Info (12022): Found design unit 1: stage4-behav File: /home/parth/RISCwithPipelining/codes/stage4.vhd Line: 65
     Info (12023): Found entity 1: stage4 File: /home/parth/RISCwithPipelining/codes/stage4.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file codes/stage3.vhd
-    Info (12022): Found design unit 1: stage3-behave File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 87
+    Info (12022): Found design unit 1: stage3-behave File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 54
     Info (12023): Found entity 1: stage3 File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file codes/stage2.vhd
     Info (12022): Found design unit 1: stage2-behave File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 30
@@ -2890,9 +2890,9 @@ Info (10041): Inferred latch for "yin[13]" at stage2.vhd(90) File: /home/parth/R
 Info (10041): Inferred latch for "yin[14]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
 Info (10041): Inferred latch for "yin[15]" at stage2.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage2.vhd Line: 90
 Info (12128): Elaborating entity "stage3" for hierarchy "stage3:stg3" File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 536
-Info (10041): Inferred latch for "rf_a2[0]" at stage3.vhd(126) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 126
-Info (10041): Inferred latch for "rf_a2[1]" at stage3.vhd(126) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 126
-Info (10041): Inferred latch for "rf_a2[2]" at stage3.vhd(126) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 126
+Info (10041): Inferred latch for "rf_a2[0]" at stage3.vhd(74) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 74
+Info (10041): Inferred latch for "rf_a2[1]" at stage3.vhd(74) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 74
+Info (10041): Inferred latch for "rf_a2[2]" at stage3.vhd(74) File: /home/parth/RISCwithPipelining/codes/stage3.vhd Line: 74
 Info (12128): Elaborating entity "stage4" for hierarchy "stage4:stg4" File: /home/parth/RISCwithPipelining/codes/risc_pipelining.vhd Line: 613
 Info (10041): Inferred latch for "ALU2[0]" at stage4.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage4.vhd Line: 90
 Info (10041): Inferred latch for "ALU2[1]" at stage4.vhd(90) File: /home/parth/RISCwithPipelining/codes/stage4.vhd Line: 90
@@ -3085,8 +3085,8 @@ Info (21057): Implemented 2 device resources after synthesis - the final resourc
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 100 warnings
-    Info: Peak virtual memory: 1008 megabytes
-    Info: Processing ended: Sun Nov  3 05:42:15 2019
+    Info: Peak virtual memory: 1019 megabytes
+    Info: Processing ended: Sun Nov  3 06:24:39 2019
     Info: Elapsed time: 00:00:17
     Info: Total CPU time (on all processors): 00:00:35
 

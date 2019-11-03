@@ -4,20 +4,20 @@ use ieee.numeric_std.all;
 
 
  entity risc_pipelining is
-    
+
     port (
 	   clk     : in  std_logic;
 	   rst		: in std_logic
-		
+
      );
-		
+
  end entity ;
 
 
  architecture behave of risc_pipelining is
 
   component stage1 is
-    
+
     port (
 	   clk     : in  std_logic;
 	   rst		: in std_logic;
@@ -27,14 +27,14 @@ use ieee.numeric_std.all;
 	   pc_plus_imm  : in std_logic_vector(15 downto 0);
 	   ir		: out std_logic_vector(15 downto 0);
 	   pc_old		: out std_logic_vector(15 downto 0);
-	   valid_out : out std_logic 
-		
+	   valid_out : out std_logic
+
      );
-		
+
  end component ;
 
  component stage2 is
-    
+
     port (
 	   clk     : in  std_logic;
 	   hzrd_clk: in std_logic;
@@ -51,7 +51,7 @@ use ieee.numeric_std.all;
 	   read_from_a: out std_logic;
 	   reg_a_addr: out std_logic_vector(2 downto 0);
 	   reg_b_addr: out std_logic_vector(2 downto 0);
-	   reg_c_addr: out std_logic_vector(2 downto 0); 
+	   reg_c_addr: out std_logic_vector(2 downto 0);
 
 	   alu_op : out std_logic_vector(1 downto 0);
 	   pc_plus_imm: out std_logic_vector(15 downto 0);
@@ -79,13 +79,13 @@ use ieee.numeric_std.all;
 	   ra_is_r7 : out std_logic;
 	   rb_is_r7 : out std_logic;
 	   rc_is_r7 : out std_logic
-		
+
      );
-		
+
  end component ;
 
  component stage3 is
-    
+
     port (
 	   clk     : in  std_logic;
 	   rst		: in std_logic;
@@ -112,14 +112,14 @@ use ieee.numeric_std.all;
 	   zero_yes_i: in std_logic;
 	   imm6_i : in std_logic_vector(5 downto 0);
 	   imm9_i : in std_logic_vector(8 downto 0);
-	   reg_a_addr_i: in std_logic_vector(2 downto 0);
+	   reg_a_addr: in std_logic_vector(2 downto 0);
 	   reg_b_addr: in std_logic_vector(2 downto 0);
-	   reg_c_addr: in std_logic_vector(2 downto 0); 
+	   reg_c_addr: in std_logic_vector(2 downto 0);
 
 	   read_from_a: in std_logic;
 	   r_a_hzrd: in std_logic_vector(2 downto 0);
 	   r_b_hzrd: in std_logic_vector(2 downto 0);
-	   r_c_hzrd: in std_logic_vector(2 downto 0); 
+	   r_c_hzrd: in std_logic_vector(2 downto 0);
 	   stage4_op: in std_logic_vector(15 downto 0);
 	   stage5_op: in std_logic_vector(15 downto 0);
 	   stage6_op: in std_logic_vector(15 downto 0);
@@ -162,13 +162,13 @@ use ieee.numeric_std.all;
 	   rb_is_r7 : in std_logic;
 	   rc_is_r7 : in std_logic
 
-		
+
      );
-	  
+
 	  end component;
 
  component stage4 is
-    
+
     port (
 	   clk     : in  std_logic;
 	   rst		: in std_logic;
@@ -215,14 +215,14 @@ use ieee.numeric_std.all;
 
 	   p_carry_com: out std_logic;
 	   p_zero_com:out std_logic
-		
+
      );
-		
+
  end component ;
 
 
   component stage5 is
-    
+
     port (
 	   clk     : in  std_logic;
 	   rst		: in std_logic;
@@ -270,13 +270,13 @@ use ieee.numeric_std.all;
 
 	   stage5_out_hzrd : out std_logic_vector(15 downto 0)
 
-		
+
      );
-		
+
  end component ;
 
   component stage6 is
-    
+
     port (
     	sm_active : in std_logic;
     	pc_to_r7i : in std_logic_vector (15 downto 0);
@@ -303,13 +303,13 @@ use ieee.numeric_std.all;
 	   pc_to_r7 : out std_logic_vector(15 downto 0);
 	   wr_7 : out std_logic;
 	   stage6_out_hzrd : out std_logic_vector(15 downto 0)
-		
+
      );
 
     end component;
 
   component reg_file is
-    
+
     port (
 	   clk        : in   std_logic;
 	   rst        : in   std_logic;
@@ -323,10 +323,10 @@ use ieee.numeric_std.all;
 	   rf_d3      : in  std_logic_vector(15 downto 0);
 		Reg7 : in std_logic_vector(15 downto 0)
      );
-		
+
   end component ;
 
-  component controller is 
+  component controller is
 	port(
 			sm_active_7 : out std_logic;
 			clk: in std_logic;
@@ -395,20 +395,20 @@ signal jal_yes_4,jlr_yes_4,beq_yes_4,jal_yes_5,beq_yes_5,jlr_yes_5,load_lukhi3,l
 valid_out_33 <= wait_for_lmsm and valid_out_3 and (not load_lukhi4) and (not(carry_yes_3 and (not p_carry_com) and valid_out_3)) and (not(zero_yes_3 and (not p_zero_com) and valid_out_3));
 valid_out_44 <= wait_for_lmsm and valid_out_4;
 valid_out_55 <= wait_for_lmsm and valid_out_5;
- 
+
 wait_for_lmsm <= not (lm_active or sm_active);
 
-valid_in_1 <= (not ((valid_out_2 and ((beq_yes_2 and (not xor_comp_3)) or jlr_yes_2)) or (valid_out_1 and jal_yes_2))) and (not rst) ; 
+valid_in_1 <= (not ((valid_out_2 and ((beq_yes_2 and (not xor_comp_3)) or jlr_yes_2)) or (valid_out_1 and jal_yes_2))) and (not rst) ;
 
-valid_in_2 <= (not ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (jlr_yes_2 and valid_out_2))) and valid_out_1 and (not rst);  
+valid_in_2 <= (not ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (jlr_yes_2 and valid_out_2))) and valid_out_1 and (not rst);
 
 
 pc_control <= "10" when (jlr_yes_2 and valid_out_2)='1' else
-			  "01" when ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (valid_out_1 and jal_yes_2 and (not (jlr_yes_2 and valid_out_2)))) ='1' else 
+			  "01" when ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (valid_out_1 and jal_yes_2 and (not (jlr_yes_2 and valid_out_2)))) ='1' else
 			  "00" ;
 
-pc_plus_imm_1 <= pc_plus_imm_3 when (beq_yes_2 and (not xor_comp_3) and valid_out_2)='1' else 
-                 pc_plus_imm_2 when  ((not(beq_yes_2 and (not xor_comp_3) and valid_out_2)) and (valid_out_1 and jal_yes_2)) ='1'; 
+pc_plus_imm_1 <= pc_plus_imm_3 when (beq_yes_2 and (not xor_comp_3) and valid_out_2)='1' else
+                 pc_plus_imm_2 when  ((not(beq_yes_2 and (not xor_comp_3) and valid_out_2)) and (valid_out_1 and jal_yes_2)) ='1';
 
 
 valid_hzrd_0 <= valid_out_33 and (not beq_yes_3);
@@ -428,7 +428,7 @@ begin
 	elsif(rising_edge(clk) and load_init_mem_addr='1') then
 		mem_addr_in <= t2_3;
 	end if;
-end process ; 
+end process ;
 
 controller1: controller port map (
 		sm_active_7 => sm_active_7,
@@ -470,7 +470,7 @@ shifter1:shifter port map(
 
 	);
 
- stg1: stage1 
+ stg1: stage1
  port map (
 
  	   clk                => clkk_1,
@@ -482,7 +482,7 @@ shifter1:shifter port map(
 	   ir		          =>   ir_1,
 	   pc_old		      => pc_old_1,
 	   valid_out          => valid_out_1
- 	
+
  );
 
  stg2 : stage2
@@ -526,10 +526,10 @@ shifter1:shifter port map(
 	   load_hzrd_out_2c 	  => load_hzrd_out_2c,
 	   load_hzrd_out_2        => load_hzrd_out_2,
 	   load_lukhi3			  => load_lukhi3,
-	   ra_is_r7				  => ra_is_r7,	
+	   ra_is_r7				  => ra_is_r7,
 	   rb_is_r7				  => rb_is_r7,
 	   rc_is_r7 			  => rc_is_r7
- 	
+
  );
 
 
@@ -558,7 +558,7 @@ shifter1:shifter port map(
 	   zero_yes_i                 => zero_yes_2,
 	   imm6_i                     => imm6_2,
 	   imm9_i                     => imm9_2,
-	   reg_a_addr_i               =>reg_a_addr_2,
+	   reg_a_addr                 =>reg_a_addr_2,
 	   reg_b_addr                 =>  reg_b_addr_2,
 	   reg_c_addr                 => reg_c_addr_2,
 
@@ -568,10 +568,10 @@ shifter1:shifter port map(
 	   r_c_hzrd					  => r_c_hzrd,
 	   stage4_op				  => stage4_op,
 	   stage5_op				  => stage5_op,
-	   stage6_op				  => stage6_op,	
+	   stage6_op				  => stage6_op,
 	   valid_vec_hzrd(0)		  => valid_hzrd_0,
 	   valid_vec_hzrd(1)		  => valid_hzrd_1,
-	   valid_vec_hzrd(2)		  => valid_hzrd_2,			
+	   valid_vec_hzrd(2)		  => valid_hzrd_2,
 
 	   alu_op_i                   =>   alu_op_2,
 	   t1                         =>  t1_3,
@@ -585,7 +585,7 @@ shifter1:shifter port map(
 	   carry_yes_o                => carry_yes_3,
 	   zero_yes_o                 =>  zero_yes_3,
        xor_comp                   =>  xor_comp_3,
-                
+
        input_alu2_ctl_4_o         => input_alu2_ctl_4_3,
 	   output_ctrl_4_o            =>  output_ctrl_4_3,
 	   output_ctrl_5_o            =>  output_ctrl_5_3,
@@ -604,7 +604,7 @@ shifter1:shifter port map(
 	   load_hzrd_out_2a		  => load_hzrd_out_2a,
 	   load_hzrd_out_2b 	  => load_hzrd_out_2b,
 	   load_hzrd_out_2c 	  => load_hzrd_out_2c,
-	   ra_is_r7				  => ra_is_r7,	
+	   ra_is_r7				  => ra_is_r7,
 	   rb_is_r7				  => rb_is_r7,
 	   rc_is_r7 			  => rc_is_r7
  );
@@ -658,7 +658,7 @@ shifter1:shifter port map(
 	   stage4_out_hzrd				=> stage4_op,
 	   p_carry_com                  => p_carry_com,
 	   p_zero_com                   => p_zero_com
- 	
+
  );
 
 
@@ -710,7 +710,7 @@ shifter1:shifter port map(
 	   sm_active 				=> sm_active,
 
 	   stage5_out_hzrd			=> stage5_op
- 	
+
  );
 
 
@@ -740,12 +740,12 @@ port map (
 	   wr_7 			  =>  wr_7,
 	   stage6_out_hzrd		  =>   stage6_op,
 	   pc_to_r7 			  => pc_to_r7
-	
+
 );
 
 
  reg_read_write: reg_file
-    
+
     port map (
 	   clk        => clk,
 	   rst        => rst,
@@ -768,5 +768,5 @@ port map (
  			rrf_d3_6;
 rf_wr <= write_to_reg when lm_active = '1' else
 	reg_wr1_6;
- 	
+
  end architecture behave;
