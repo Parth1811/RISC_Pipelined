@@ -20,7 +20,7 @@ entity controller is
 		);
 end entity;
 
-architecture atrangi of controller is
+architecture Behav of controller is
 
 	type state_type is ( S0,S1,S2,S3,S4,S5,S6,lukhi1,lukhi2,lukhi3,lukhi4,lukhi5);
 	signal state : state_type := S0;
@@ -28,58 +28,31 @@ architecture atrangi of controller is
 	signal counter:std_logic_vector(15 downto 0) := x"0000";
 	signal car_dump,zer_dump:std_logic;
 
-	component ALU is
-		port (
-			A, B	: in std_logic_vector(15 downto 0);
-			OP 		: in std_logic_vector(1 downto 0);
-			O 		: out std_logic_vector(15 downto 0);
-			C, Z	: out std_logic
-		);
-	end component;
-
 	begin
-
-		fsm_alu: alu
-			port map(
-				A     =>  alu_in,
-				B     =>  x"0001",
-				OP    =>  "00" ,
-				O     =>  alu_out,
-				C     =>  car_dump,
-				Z     =>  zer_dump
-	    );
 
 		alu_in <= counter 		when (state = S3 or state = S5) else
     					mem_addr_in when (state = S2 or state = S6) else
 	    				counter ;
+		alu_out <= std_logic_vector(to_signed((to_integer(signed(alu_in)) + 1), 16));
 
 		shift_now          <= '1' when (state = S3 or state = S6) else '0';
-	  lm_active_now 		 <= '1' when (state = S2 or state = S3 ) else '0';
+	  lm_active_now 		 <= '1' when (state = S2 or state = S3) else '0';
 	 	sm_active_now 		 <= '1' when (state = S5 or state = S6) else '0';
 	  load_init_mem_addr <= '1' when (state = S1 or state = S4) else  '0';
 		write_to_reg 			 <= '1' when (state = S3 and shifter_bit_0 = '1') else '0';
 		write_to_mem 			 <= '1' when (state = S6 and shifter_bit_0 = '1') else '0';
 		load_lukhi4        <= '1' when (state = lukhi4  or state = lukhi5) else '0';
 
-	 write_mem_data <= reg_val;
-	 write_reg_data <= reg_val;
+	 	write_mem_data <= reg_val;
+	 	write_reg_data <= reg_val;
 
-	 reg_addr_out <= counter(2 downto 0);
+	 	reg_addr_out <= counter(2 downto 0);
 
-	 clk1 <= '1' when state = S0 else
-	  '0' ;
-
-		clk2 <= '1' when state = S0 else
-	  '0' ;
-
-		clk3 <= '1' when state = S0 else
-	  '0' ;
-
-		clk4 <= '1' when (state = S0 or state = S1 or state = S4 or state = lukhi3 or state = lukhi4 or state = lukhi5) else
-	  '0' ;
-
-		sm_active_7 <= not(counter(0) or counter(1) or counter(2)) when (state = S6) else
-					'0';
+	 	clk1 <= '1' when state = S0 else '0';
+		clk2 <= clk1;
+		clk3 <= clk2;
+		clk4 <= '1' when (state = S0 or state = S1 or state = S4 or state = lukhi3 or state = lukhi4 or state = lukhi5) else '0';
+		sm_active_7 <= not(counter(0) or counter(1) or counter(2)) when (state = S6) else '0';
 
 		process(clk,rst)
 			begin
@@ -122,7 +95,6 @@ architecture atrangi of controller is
 								state <= S2;
 							end if ;
 
-
 						when S4 =>
 							state <= lukhi2;
 
@@ -160,8 +132,8 @@ architecture atrangi of controller is
 							state <= S0;
 						end case;
 
-					end if;
+				end if;
 
-				end process;
-				
-end atrangi;
+		end process;
+
+end Behav;
