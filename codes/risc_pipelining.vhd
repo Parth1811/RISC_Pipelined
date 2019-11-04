@@ -60,7 +60,6 @@ port (
     port (
 		clk, rst , valid_in									: in  std_logic;
 		jlr_yes, beq_yes, jal_yes 					: in std_logic;
-		load_lukhi													: in std_logic;
 
 		reg_addr2_ctl 											: in std_logic;
 		input_alu2_ctl_4 										: in std_logic_vector(1 downto 0);
@@ -258,8 +257,8 @@ end entity;
 			sm_active_now:out std_logic;
 			load_init_mem_addr:out std_logic;
 			load_hzrd_out_2:in std_logic;
-			load_lukhi3:out std_logic;
-			load_lukhi4:out std_logic
+			temp3:out std_logic;
+			temp4:out std_logic
 		);
 	end component;
 
@@ -291,7 +290,7 @@ signal mem_addr_in,reg_data_in,mem_to_ctrl_data,ctrl_to_reg_data,ctrl_to_mem_dat
 signal reg_addr_out,rf_a1,rf_a3,ctrl_to_reg_addr,r_b_hzrd,r_c_hzrd,r_a_hzrd:std_logic_vector(2 downto 0);
 signal clkk_1,clkk_2,clkk_3,clkk_4,wait_for_lmsm,wr_7 : std_logic;
 signal valid_out_33,valid_out_44,valid_out_55,valid_hzrd_0,valid_hzrd_1,valid_hzrd_2,load_hzrd_out_2a,load_hzrd_out_2,load_hzrd_out_2c,load_hzrd_out_2b,read_from_a :std_logic;
-signal jal_yes_4,jlr_yes_4,beq_yes_4,jal_yes_5,beq_yes_5,jlr_yes_5,load_lukhi3,load_lukhi4,sm_active_7,p_carry_com,p_zero_com: std_logic;
+signal jal_yes_4,jlr_yes_4,beq_yes_4,jal_yes_5,beq_yes_5,jlr_yes_5,temp3,temp4,sm_active_7,p_carry_com,p_zero_com: std_logic;
 
  begin
 
@@ -300,7 +299,7 @@ signal jal_yes_4,jlr_yes_4,beq_yes_4,jal_yes_5,beq_yes_5,jlr_yes_5,load_lukhi3,l
  clkk_3 <= clk and clk3;
  clkk_4 <= clk and clk4;
 
-valid_out_33 <= wait_for_lmsm and valid_out_3 and (not load_lukhi4) and (not(carry_yes_3 and (not p_carry_com) and valid_out_3)) and (not(zero_yes_3 and (not p_zero_com) and valid_out_3));
+valid_out_33 <= wait_for_lmsm and valid_out_3 and (not temp4) and (not(carry_yes_3 and (not p_carry_com) and valid_out_3)) and (not(zero_yes_3 and (not p_zero_com) and valid_out_3));
 valid_out_44 <= wait_for_lmsm and valid_out_4;
 valid_out_55 <= wait_for_lmsm and valid_out_5;
  
@@ -364,8 +363,8 @@ controller1: controller port map (
  		sm_active_now => sm_active,
  		load_init_mem_addr => load_init_mem_addr,
    		load_hzrd_out_2        => load_hzrd_out_2,
-   		load_lukhi3 => load_lukhi3,
- 		load_lukhi4 => load_lukhi4
+   		temp3 => temp3,
+ 		temp4 => temp4
  		);
 
 shifter1:shifter port map(
@@ -454,7 +453,6 @@ shifter1:shifter port map(
 	   reg_inp_data_ctl_6         => reg_inp_data_ctl_6_2,
 	   mem_rd_5                   =>  mem_rd_5_2,
 	   reg_wr_6                   =>  reg_wr_6_2,
-	   load_lukhi                 => load_lukhi4,
 
 	   rf_d1                      =>  rf_d1_3,
 	   rf_d2                      =>  rf_d2_3,
@@ -674,3 +672,4 @@ rf_wr <= write_to_reg when lm_active = '1' else
 	reg_wr1_6;
  	
  end architecture behave;
+
