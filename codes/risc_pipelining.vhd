@@ -31,7 +31,7 @@ use ieee.numeric_std.all;
  component stage2 is
     
 port (
-    	   clk, hzrd_clk, rst                  : in  std_logic;
+    	   clk, rst	                       : in  std_logic;
     	   valid_in, 		               : in std_logic;
     	   ir, pc_old_i                        : in std_logic_vector(15 downto 0);
     	   pc_old_o, pc_plus_imm               : out std_logic_vector(15 downto 0);
@@ -398,7 +398,6 @@ shifter1:shifter port map(
  port map (
 
  	   clk                    => clkk_2,
- 	   hzrd_clk				  => clk,
 	   rst	                  =>  rst,
 	   valid_in               => valid_in_2,
 	   ir                     => ir_1,
