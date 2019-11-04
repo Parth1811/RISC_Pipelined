@@ -56,7 +56,7 @@ stage6_out_hzrd <= rrf_d31;
 
  valid_out1 <= valid_in;
  end if;
- end process stg6;
+ end process;
 
 
 
