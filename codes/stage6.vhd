@@ -46,9 +46,10 @@ pc_to_r7 <= pc_to_r7i;
 reg_wr1 <= reg_wr and (((not carry_yes_i) or p_carry_i) and ((not zero_yes_i) or p_zero_i)) and valid_in; 		
 
 rrf_d3 <= stage_5_out_6 when reg_inp_data_ctl='0' else
-	  pc_old_i when reg_inp_data_ctl='1';
+			 pc_old_i when reg_inp_data_ctl='1';
 
-stage6_out_hzrd <= rrf_d31;
+stage6_out_hzrd <= stage_5_out_6 when reg_inp_data_ctl='0' else
+						 pc_old_i when reg_inp_data_ctl='1';
 
  process(clk)
  begin
@@ -60,4 +61,4 @@ stage6_out_hzrd <= rrf_d31;
 
 
 
-end architecture
+end architecture;
