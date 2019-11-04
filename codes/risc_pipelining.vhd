@@ -4,329 +4,238 @@ use ieee.numeric_std.all;
 
 
  entity risc_pipelining is
-
+    
     port (
 	   clk     : in  std_logic;
 	   rst		: in std_logic
-
+		
      );
-
+		
  end entity ;
 
 
  architecture behave of risc_pipelining is
 
   component stage1 is
-
-    port (
-	   clk     : in  std_logic;
-	   rst		: in std_logic;
-	   valid_in : in std_logic;
-	   pc_control : in std_logic_vector(1 downto 0);
-	   reg_b_val: in std_logic_vector(15 downto 0);
-	   pc_plus_imm  : in std_logic_vector(15 downto 0);
-	   ir		: out std_logic_vector(15 downto 0);
-	   pc_old		: out std_logic_vector(15 downto 0);
-	   valid_out : out std_logic
-
-     );
-
+    
+  port (
+  	   clk, rst, valid_in      : in  std_logic;
+  	   pc_control              : in std_logic_vector(1 downto 0);
+  	   reg_b_val, pc_plus_imm  : in std_logic_vector(15 downto 0);
+  	   ir, pc_old              : out std_logic_vector(15 downto 0);
+  	   valid_out               : out std_logic
+   );
+		
  end component ;
 
  component stage2 is
-
-    port (
-	   clk     : in  std_logic;
-	   hzrd_clk: in std_logic;
-	   rst		: in std_logic;
-	   valid_in : in std_logic;
-	   ir : in std_logic_vector(15 downto 0);
-	   pc_old_i: in std_logic_vector(15 downto 0);
-	   carry_yes :  out std_logic;
-	   zero_yes: out std_logic;
-	   pc_old_o		: out std_logic_vector(15 downto 0);
-	   imm6 : out std_logic_vector(5 downto 0);
-	   imm9 : out std_logic_vector(8 downto 0);
-
-	   read_from_a: out std_logic;
-	   reg_a_addr: out std_logic_vector(2 downto 0);
-	   reg_b_addr: out std_logic_vector(2 downto 0);
-	   reg_c_addr: out std_logic_vector(2 downto 0);
-
-	   alu_op : out std_logic_vector(1 downto 0);
-	   pc_plus_imm: out std_logic_vector(15 downto 0);
-	   reg_addr2_ctl_3 : out std_logic;
-	   input_alu2_ctl_4 : out std_logic_vector(1 downto 0);
-	   output_ctrl_4: out std_logic;
-	   output_ctrl_5: out std_logic;
-	   reg_inp_data_ctl_6: out std_logic;
-	   mem_rd_5 : out std_logic;
-	   reg_wr_6 : out std_logic;
-	   jlr_yes : out std_logic;
-	   beq_yes: out std_logic;
-	   jal_yes: out std_logic;
-	   valid_out : out std_logic;
-	   lm_out_2 : out std_logic;
-	   sm_out_2 : out std_logic;
-	   r_a_hzrd: out std_logic_vector(2 downto 0);
-	   r_b_hzrd:out std_logic_vector(2 downto 0);
-	   r_c_hzrd:out std_logic_vector(2 downto 0);
-	   load_hzrd_out_2a:out std_logic;
-	   load_hzrd_out_2b:out std_logic;
-	   load_hzrd_out_2c:out std_logic;
-	   load_hzrd_out_2 : out std_logic;
-	   load_lukhi3: in std_logic;
-	   ra_is_r7 : out std_logic;
-	   rb_is_r7 : out std_logic;
-	   rc_is_r7 : out std_logic
-
+    
+port (
+    	   clk, hzrd_clk, rst                  : in  std_logic;
+    	   valid_in, 		               : in std_logic;
+    	   ir, pc_old_i                        : in std_logic_vector(15 downto 0);
+    	   pc_old_o, pc_plus_imm               : out std_logic_vector(15 downto 0);
+    	   imm6                                : out std_logic_vector(5 downto 0);
+    	   imm9                                : out std_logic_vector(8 downto 0);
+    	   reg_a_addr, reg_b_addr, reg_c_addr  : out std_logic_vector(2 downto 0);
+         r_a_hzrd, r_b_hzrd, r_c_hzrd        : out std_logic_vector(2 downto 0);
+    	   alu_op, input_alu2_ctl_4            : out std_logic_vector(1 downto 0);
+         carry_yes, zero_yes                 : out std_logic;
+    	   reg_addr2_ctl_3, reg_inp_data_ctl_6 : out std_logic;
+    	   output_ctrl_4, output_ctrl_5        : out std_logic;
+    	   mem_rd_5, reg_wr_6                  : out std_logic;
+    	   jlr_yes, beq_yes, jal_yes           : out std_logic;
+    	   valid_out, lm_out_2, sm_out_2       : out std_logic;
+    	   read_from_a                         : out std_logic;
+    	   load_hzrd_out_2a, load_hzrd_out_2b  : out std_logic;
+    	   load_hzrd_out_2c, load_hzrd_out_2   : out std_logic;
+    	   ra_is_r7, rb_is_r7, rc_is_r7        : out std_logic;
+    	   r7_write_yes                        : out std_logic
      );
-
+		
  end component ;
 
  component stage3 is
-
+    
     port (
-	   clk     : in  std_logic;
-	   rst		: in std_logic;
-	   valid_in : in std_logic;
-	   jlr_yes : in std_logic;
-	   beq_yes: in std_logic;
-	   jal_yes: in std_logic;
-	   	   load_lukhi: in std_logic;
+		clk, rst , valid_in									: in  std_logic;
+		jlr_yes, beq_yes, jal_yes 					: in std_logic;
+		load_lukhi													: in std_logic;
 
-	   reg_addr2_ctl : in std_logic;
-	   input_alu2_ctl_4 : in std_logic_vector(1 downto 0);
-	   output_ctrl_4: in std_logic;
-	   output_ctrl_5: in std_logic;
-	   reg_inp_data_ctl_6: in std_logic;
-	   mem_rd_5 : in std_logic;
-	   reg_wr_6 : in std_logic;
+		reg_addr2_ctl 											: in std_logic;
+		input_alu2_ctl_4 										: in std_logic_vector(1 downto 0);
+		output_ctrl_4, output_ctrl_5   			: in std_logic;
+		reg_inp_data_ctl_6									: in std_logic;
+		mem_rd_5, reg_wr_6 									: in std_logic;
 
-	   rf_d1 : in std_logic_vector(15 downto 0);
-	   rf_d2: in std_logic_vector(15 downto 0);
+		rf_d1, rf_d2												: in std_logic_vector(15 downto 0);
+		pc_plus_imm, pc_old_i				  			: in std_logic_vector(15 downto 0);
 
-	   pc_plus_imm: in std_logic_vector(15 downto 0);
-	   pc_old_i: in std_logic_vector(15 downto 0);
-	   carry_yes_i :  in std_logic;
-	   zero_yes_i: in std_logic;
-	   imm6_i : in std_logic_vector(5 downto 0);
-	   imm9_i : in std_logic_vector(8 downto 0);
-	   reg_a_addr: in std_logic_vector(2 downto 0);
-	   reg_b_addr: in std_logic_vector(2 downto 0);
-	   reg_c_addr: in std_logic_vector(2 downto 0);
+		carry_yes_i, zero_yes_i			  			: in std_logic;
+		imm6_i															: in std_logic_vector(5 downto 0);
+		imm9_i 															: in std_logic_vector(8 downto 0);
+		reg_a_addr, reg_b_addr, reg_c_addr	: in std_logic_vector(2 downto 0);
+		r_a_hzrd, r_b_hzrd, r_c_hzrd				: in std_logic_vector(2 downto 0);
+		read_from_a													: in std_logic;
+		stage4_op, stage5_op, stage6_op			: in std_logic_vector(15 downto 0);
+		valid_vec_hzrd 											: in std_logic_vector(2 downto 0);
 
-	   read_from_a: in std_logic;
-	   r_a_hzrd: in std_logic_vector(2 downto 0);
-	   r_b_hzrd: in std_logic_vector(2 downto 0);
-	   r_c_hzrd: in std_logic_vector(2 downto 0);
-	   stage4_op: in std_logic_vector(15 downto 0);
-	   stage5_op: in std_logic_vector(15 downto 0);
-	   stage6_op: in std_logic_vector(15 downto 0);
-	   valid_vec_hzrd: in std_logic_vector(2 downto 0);
+		alu_op_i 														: in std_logic_vector(1 downto 0);
+		t1, t2, pc_old_o, reg_b_val					: out std_logic_vector(15 downto 0);
+		imm6_o 															: out std_logic_vector(5 downto 0);
+		imm9_o 															: out std_logic_vector(8 downto 0);
+		reg_a_addr_o 												: out std_logic_vector(2 downto 0);
+		alu_op_o														: out std_logic_vector(1 downto 0);
+		carry_yes_o, zero_yes_o, xor_comp		: out std_logic;
 
-	   alu_op_i : in std_logic_vector(1 downto 0);
-	   t1 : out std_logic_vector(15 downto 0);
-	   t2 : out std_logic_vector ( 15 downto 0);
-	   alu_op_o: out std_logic_vector(1 downto 0);
-	   pc_old_o		: out std_logic_vector(15 downto 0);
-       imm6_o : out std_logic_vector(5 downto 0);
-	   imm9_o : out std_logic_vector(8 downto 0);
-	   reg_b_val : out std_logic_vector(15 downto 0);
-	   reg_a_addr_o : out std_logic_vector(2 downto 0);
-	   carry_yes_o :  out std_logic;
-	   zero_yes_o: out std_logic;
-       xor_comp: out std_logic;
+		input_alu2_ctl_4_o 									: out std_logic_vector(1 downto 0);
+		output_ctrl_4_o, output_ctrl_5_o		: out std_logic;
+		reg_inp_data_ctl_6_o, valid_out			: out std_logic;
+		mem_rd_5_o, reg_wr_6_o							: out std_logic;
 
-       input_alu2_ctl_4_o : out std_logic_vector(1 downto 0);
-	   output_ctrl_4_o: out std_logic;
-	   output_ctrl_5_o: out std_logic;
-	   reg_inp_data_ctl_6_o: out std_logic;
-	   mem_rd_5_o : out std_logic;
-	   reg_wr_6_o : out std_logic;
+		pc_plus_imm_o 											: out std_logic_vector(15 downto 0);
+		rf_a2																: out std_logic_vector(2 downto 0);
 
-	   rf_a2: out std_logic_vector(2 downto 0);
-	   pc_plus_imm_o: out std_logic_vector(15 downto 0);
-
-	   jlr_yes_o : out std_logic;
-	   beq_yes_o: out std_logic;
-	   jal_yes_o: out std_logic;
-
-	   valid_out : out std_logic;
-
-	   load_hzrd_out_2a:in std_logic;
-	   load_hzrd_out_2b:in std_logic;
-	   load_hzrd_out_2c:in std_logic;
-
-	   ra_is_r7 : in std_logic;
-	   rb_is_r7 : in std_logic;
-	   rc_is_r7 : in std_logic
-
-
-     );
-
+		jlr_yes_o, beq_yes_o, jal_yes_o			: out std_logic;
+		load_hzrd_out_2a, load_hzrd_out_2b	: in std_logic;
+		load_hzrd_out_2c  									: in std_logic;
+		ra_is_r7, rb_is_r7, rc_is_r7				: in std_logic
+	);
+	  
 	  end component;
 
  component stage4 is
-
-    port (
+    
+    	port(
 	   clk     : in  std_logic;
 	   rst		: in std_logic;
-	   valid_in : std_logic;
+	   valid_in : in std_logic;
 	   input_alu2_ctl : in std_logic_vector(1 downto 0);
 	   output_ctrl: in std_logic;
-	   output_ctrl_5: in std_logic;
-	   reg_inp_data_ctl_6: in std_logic;
-	   mem_rd_5 : in std_logic;
-	   reg_wr_6 : in std_logic;
-	   	   jlr_yes : in std_logic;
-	   beq_yes: in std_logic;
-	   jal_yes: in std_logic;
 
-	   reg_a_adr_in: in std_logic_vector(2 downto 0);
+	   output_ctrl_5: in std_logic;		output_ctrl_5_o: out std_logic;
+	   reg_inp_data_ctl_6: in std_logic;	reg_inp_data_ctl_6_o: out std_logic;
+	   mem_rd_5 : in std_logic;		mem_rd_5_o : out std_logic;
+	   reg_wr_6 : in std_logic;		reg_wr_6_o : out std_logic;
+	   jlr_yes : in std_logic;		jlr_yes_o : out std_logic;
+	   beq_yes: in std_logic;		beq_yes_o: out std_logic;
+	   jal_yes: in std_logic;		jal_yes_o: out std_logic;
+
+	   reg_a_adr_in: in std_logic_vector(2 downto 0);	reg_a_adr_out: out std_logic_vector(2 downto 0);
 	   t1  : in std_logic_vector(15 downto 0);
-	   t2_in  : in std_logic_vector(15 downto 0);
+	   t2_in  : in std_logic_vector(15 downto 0);		t2_out: out std_logic_vector(15 downto 0);
 	   imm6  : in std_logic_vector(5 downto 0);
 	   imm9  : in std_logic_vector(8 downto 0);
-	   alu_op		: in std_logic_vector(1 downto 0);
-	   pc_old_i		: in std_logic_vector(15 downto 0);
-	   carry_yes_i :  in std_logic;
-	   zero_yes_i: in std_logic;
-	   reg_a_adr_out: out std_logic_vector(2 downto 0);
-	   t2_out: out std_logic_vector(15 downto 0);
-	   pc_old_o		: out std_logic_vector(15 downto 0);
-	   alu_out : out std_logic_vector(15 downto 0);
-	   p_carry: out std_logic;
-	   carry_yes_o :  out std_logic;
-	   zero_yes_o: out std_logic;
-	   p_zero : out std_logic;
+	   alu_op: in std_logic_vector(1 downto 0);
+	   pc_old_i: in std_logic_vector(15 downto 0);		pc_old_o: out std_logic_vector(15 downto 0);
+	   carry_yes_i :  in std_logic;				carry_yes_o :  out std_logic;
+	   zero_yes_i: in std_logic;				zero_yes_o: out std_logic;
 
-	   output_ctrl_5_o: out std_logic;
-	   reg_inp_data_ctl_6_o: out std_logic;
-	   mem_rd_5_o : out std_logic;
-	   reg_wr_6_o : out std_logic;
-	   	   jlr_yes_o : out std_logic;
-	   beq_yes_o: out std_logic;
-	   jal_yes_o: out std_logic;
+
+	   alu_out : out std_logic_vector(15 downto 0);
+
+
+	   p_carry: out std_logic;
+	   p_zero : out std_logic;
+	   p_carry_com: out std_logic;
+	   p_zero_com:out std_logic;
 
 	   valid_out : out std_logic;
 
-	   stage4_out_hzrd : out std_logic_vector(15 downto 0);
-
-	   p_carry_com: out std_logic;
-	   p_zero_com:out std_logic
-
-     );
-
+	   stage4_out_hzrd : out std_logic_vector(15 downto 0)
+	);
+end entity;
+		
  end component ;
 
 
   component stage5 is
+    
+ port (
+	   clk, rst, valid_in      : in std_logic;
+	   p_carry_i               : in std_logic;    p_carry_o               : out std_logic;
+     p_zero_i                : in std_logic;    p_zero_o                : out std_logic;
+     output_ctrl, read_ctrl  : in std_logic;
+	   reg_inp_data_ctl_6      : in std_logic;    reg_inp_data_ctl_6_o    : out std_logic;
+     reg_wr_6                : in std_logic;    reg_wr_6_o              : out std_logic;
+	   jlr_yes                 : in std_logic;    jlr_yes_o               : out std_logic;
+     beq_yes                 : in std_logic;		beq_yes_o               : out std_logic;
+	   jal_yes                 : in std_logic;		jal_yes_o               : out std_logic;
+     carry_yes_i             : in std_logic;	  carry_yes_o             : out std_logic;
+     zero_yes_i              : in std_logic;	  zero_yes_o              : out std_logic;
 
-    port (
-	   clk     : in  std_logic;
-	   rst		: in std_logic;
-	   valid_in : in std_logic;
-	   p_carry_i: in std_logic;
-	   p_zero_i: in std_logic;
+     reg_a_adr_in            : in std_logic_vector(2 downto 0);	    reg_a_adr_out   : out std_logic_vector(2 downto 0);
+	   t2_in                   : in std_logic_vector(15 downto 0);		t2_out          : out std_logic_vector(15 downto 0);
+	   pc_old_i                : in std_logic_vector(15 downto 0);		pc_old_o        : out std_logic_vector(15 downto 0);
 
-	   output_ctrl: in std_logic;
-	   read_ctrl: in std_logic;
-	   reg_inp_data_ctl_6: in std_logic;
-	   reg_wr_6 : in std_logic;
-	   	   jlr_yes : in std_logic;
-	   beq_yes: in std_logic;
-	   jal_yes: in std_logic;
-
-	   alu_out_5 : in std_logic_vector(15 downto 0);
-	   reg_a_adr_in: in std_logic_vector(2 downto 0);
-	   t2_in  : in std_logic_vector(15 downto 0);
-	   pc_old_i		: in std_logic_vector(15 downto 0);
-	   carry_yes_i :  in std_logic;
-	   zero_yes_i: in std_logic;
-	   reg_a_adr_out: out std_logic_vector(2 downto 0);
-	   t2_out: out std_logic_vector(15 downto 0);
-	   pc_old_o		: out std_logic_vector(15 downto 0);
-	   stage_5_out : out std_logic_vector(15 downto 0);
-	   p_carry_o: out std_logic;
-	   carry_yes_o :  out std_logic;
-	   zero_yes_o: out std_logic;
-	   p_zero_o : out std_logic;
-	   	   jlr_yes_o : out std_logic;
-	   beq_yes_o: out std_logic;
-	   jal_yes_o: out std_logic;
-
-	   reg_inp_data_ctl_6_o: out std_logic;
-	   reg_wr_6_o : out std_logic;
-
-	   valid_out : out std_logic ;
-
-	   mem_addr_in 				: in std_logic_vector(15 downto 0);
-	   write_mem_data			: in std_logic_vector(15 downto 0);
-	   read_mem_data			: out std_logic_vector(15 downto 0);
-	   write_to_mem				: in std_logic;
-	   lm_active 				: in std_logic;
-	   sm_active 				: in std_logic;
-
-	   stage5_out_hzrd : out std_logic_vector(15 downto 0)
-
+     alu_out_5               : in std_logic_vector(15 downto 0);
+     mem_addr_in             : in std_logic_vector(15 downto 0);
+     write_mem_data          : in std_logic_vector(15 downto 0);
+     write_to_mem	           : in std_logic;
+     lm_active               : in std_logic;
+     sm_active               : in std_logic;
+     read_mem_data           : out std_logic_vector(15 downto 0);
+     stage_5_out             : out std_logic_vector(15 downto 0);
+	   stage5_out_hzrd         : out std_logic_vector(15 downto 0);
+	   valid_out               : out std_logic
 
      );
-
+		
  end component ;
 
   component stage6 is
-
+    
     port (
-    	sm_active : in std_logic;
-    	pc_to_r7i : in std_logic_vector (15 downto 0);
-	   clk     : in  std_logic;
-	   rst		: in std_logic;
-	   valid_in : in std_logic;
-	   p_carry_i: in std_logic;
-	   p_zero_i: in std_logic;
-	   	   jlr_yes : in std_logic;
-	   beq_yes: in std_logic;
-	   jal_yes: in std_logic;
-
-	   reg_inp_data_ctl: in std_logic;
-	   reg_wr : in std_logic;
-
-	   stage_5_out_6 : in std_logic_vector(15 downto 0);
-	   reg_a_adr_in: in std_logic_vector(2 downto 0);
-	   pc_old_i		: in std_logic_vector(15 downto 0);
-	   carry_yes_i :  in std_logic;
-	   zero_yes_i: in std_logic;
-	   reg_wr1 : out std_logic;
-	   rrf_d3 : out std_logic_vector(15 downto 0);
-	   valid_out : out std_logic;
-	   pc_to_r7 : out std_logic_vector(15 downto 0);
-	   wr_7 : out std_logic;
-	   stage6_out_hzrd : out std_logic_vector(15 downto 0)
-
+	   clk     				: in  std_logic;
+	   rst					: in std_logic;
+	   valid_in 				: in std_logic;
+	   p_carry_i				: in std_logic;
+	   p_zero_i				: in std_logic;
+	   reg_inp_data_ctl			: in std_logic;
+	   reg_wr 				: in std_logic;
+	   jlr_yes				: in std_logic;
+	   beq_yes				: in std_logic;
+	   jal_yes				: in std_logic;
+	   sm_active 				: in std_logic;
+	   stage_5_out_6 			: in std_logic_vector(15 downto 0);
+	   reg_a_adr_in				: in std_logic_vector(2 downto 0);
+	   pc_old_i				: in std_logic_vector(15 downto 0);
+	   carry_yes_i 				:  in std_logic;
+	   zero_yes_i				: in std_logic;
+	   reg_wr1 				: out std_logic;
+	   rrf_d3 				: out std_logic_vector(15 downto 0);
+	   valid_out 				: out std_logic;
+	   pc_to_r7i				: in std_logic_vector(15 downto 0);
+	   pc_to_r7 				: out std_logic_vector(15 downto 0);
+	   stage6_out_hzrd 			: out std_logic_vector(15 downto 0);
+	   wr_7 				: out std_logic
      );
 
     end component;
 
   component reg_file is
-
+    
     port (
 	   clk        : in   std_logic;
 	   rst        : in   std_logic;
 	   wr         : in   std_logic;
-	   wr_7         : in   std_logic;
-	   rf_a1      : in  std_logic_vector(2 downto 0);
-	   rf_a2      : in  std_logic_vector(2 downto 0);
-	   rf_a3      : in  std_logic_vector(2 downto 0);
-	   rf_d1      : out  std_logic_vector(15 downto 0);
-	   rf_d2      : out  std_logic_vector(15 downto 0);
-	   rf_d3      : in  std_logic_vector(15 downto 0);
-		Reg7 : in std_logic_vector(15 downto 0)
-     );
 
+	   wr_7	      : in std_logic;
+	   Reg7	      : in std_logic_vector(15 downto 0);
+
+	   rf_a1      : in  std_logic_vector(2 downto 0);
+	   rf_d1      : out  std_logic_vector(15 downto 0);
+
+	   rf_a2      : in  std_logic_vector(2 downto 0);
+	   rf_d2      : out  std_logic_vector(15 downto 0);
+
+	   rf_a3      : in  std_logic_vector(2 downto 0);
+	   rf_d3      : in  std_logic_vector(15 downto 0)
+     );
+		
   end component ;
 
-  component controller is
+  component controller is 
 	port(
 			sm_active_7 : out std_logic;
 			clk: in std_logic;
@@ -395,20 +304,20 @@ signal jal_yes_4,jlr_yes_4,beq_yes_4,jal_yes_5,beq_yes_5,jlr_yes_5,load_lukhi3,l
 valid_out_33 <= wait_for_lmsm and valid_out_3 and (not load_lukhi4) and (not(carry_yes_3 and (not p_carry_com) and valid_out_3)) and (not(zero_yes_3 and (not p_zero_com) and valid_out_3));
 valid_out_44 <= wait_for_lmsm and valid_out_4;
 valid_out_55 <= wait_for_lmsm and valid_out_5;
-
+ 
 wait_for_lmsm <= not (lm_active or sm_active);
 
-valid_in_1 <= (not ((valid_out_2 and ((beq_yes_2 and (not xor_comp_3)) or jlr_yes_2)) or (valid_out_1 and jal_yes_2))) and (not rst) ;
+valid_in_1 <= (not ((valid_out_2 and ((beq_yes_2 and (not xor_comp_3)) or jlr_yes_2)) or (valid_out_1 and jal_yes_2))) and (not rst) ; 
 
-valid_in_2 <= (not ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (jlr_yes_2 and valid_out_2))) and valid_out_1 and (not rst);
+valid_in_2 <= (not ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (jlr_yes_2 and valid_out_2))) and valid_out_1 and (not rst);  
 
 
 pc_control <= "10" when (jlr_yes_2 and valid_out_2)='1' else
-			  "01" when ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (valid_out_1 and jal_yes_2 and (not (jlr_yes_2 and valid_out_2)))) ='1' else
+			  "01" when ((beq_yes_2 and (not xor_comp_3) and valid_out_2) or (valid_out_1 and jal_yes_2 and (not (jlr_yes_2 and valid_out_2)))) ='1' else 
 			  "00" ;
 
-pc_plus_imm_1 <= pc_plus_imm_3 when (beq_yes_2 and (not xor_comp_3) and valid_out_2)='1' else
-                 pc_plus_imm_2 when  ((not(beq_yes_2 and (not xor_comp_3) and valid_out_2)) and (valid_out_1 and jal_yes_2)) ='1';
+pc_plus_imm_1 <= pc_plus_imm_3 when (beq_yes_2 and (not xor_comp_3) and valid_out_2)='1' else 
+                 pc_plus_imm_2 when  ((not(beq_yes_2 and (not xor_comp_3) and va7lid_out_2)) and (valid_out_1 and jal_yes_2)) ='1'; 
 
 
 valid_hzrd_0 <= valid_out_33 and (not beq_yes_3);
@@ -428,7 +337,7 @@ begin
 	elsif(rising_edge(clk) and load_init_mem_addr='1') then
 		mem_addr_in <= t2_3;
 	end if;
-end process ;
+end process ; 
 
 controller1: controller port map (
 		sm_active_7 => sm_active_7,
@@ -470,7 +379,7 @@ shifter1:shifter port map(
 
 	);
 
- stg1: stage1
+ stg1: stage1 
  port map (
 
  	   clk                => clkk_1,
@@ -482,7 +391,7 @@ shifter1:shifter port map(
 	   ir		          =>   ir_1,
 	   pc_old		      => pc_old_1,
 	   valid_out          => valid_out_1
-
+ 	
  );
 
  stg2 : stage2
@@ -525,11 +434,10 @@ shifter1:shifter port map(
 	   load_hzrd_out_2b 	  => load_hzrd_out_2b,
 	   load_hzrd_out_2c 	  => load_hzrd_out_2c,
 	   load_hzrd_out_2        => load_hzrd_out_2,
-	   load_lukhi3			  => load_lukhi3,
-	   ra_is_r7				  => ra_is_r7,
+	   ra_is_r7				  => ra_is_r7,	
 	   rb_is_r7				  => rb_is_r7,
 	   rc_is_r7 			  => rc_is_r7
-
+ 	
  );
 
 
@@ -558,7 +466,7 @@ shifter1:shifter port map(
 	   zero_yes_i                 => zero_yes_2,
 	   imm6_i                     => imm6_2,
 	   imm9_i                     => imm9_2,
-	   reg_a_addr                 =>reg_a_addr_2,
+	   reg_a_addr_i               =>reg_a_addr_2,
 	   reg_b_addr                 =>  reg_b_addr_2,
 	   reg_c_addr                 => reg_c_addr_2,
 
@@ -568,10 +476,10 @@ shifter1:shifter port map(
 	   r_c_hzrd					  => r_c_hzrd,
 	   stage4_op				  => stage4_op,
 	   stage5_op				  => stage5_op,
-	   stage6_op				  => stage6_op,
+	   stage6_op				  => stage6_op,	
 	   valid_vec_hzrd(0)		  => valid_hzrd_0,
 	   valid_vec_hzrd(1)		  => valid_hzrd_1,
-	   valid_vec_hzrd(2)		  => valid_hzrd_2,
+	   valid_vec_hzrd(2)		  => valid_hzrd_2,			
 
 	   alu_op_i                   =>   alu_op_2,
 	   t1                         =>  t1_3,
@@ -585,7 +493,7 @@ shifter1:shifter port map(
 	   carry_yes_o                => carry_yes_3,
 	   zero_yes_o                 =>  zero_yes_3,
        xor_comp                   =>  xor_comp_3,
-
+                
        input_alu2_ctl_4_o         => input_alu2_ctl_4_3,
 	   output_ctrl_4_o            =>  output_ctrl_4_3,
 	   output_ctrl_5_o            =>  output_ctrl_5_3,
@@ -604,7 +512,7 @@ shifter1:shifter port map(
 	   load_hzrd_out_2a		  => load_hzrd_out_2a,
 	   load_hzrd_out_2b 	  => load_hzrd_out_2b,
 	   load_hzrd_out_2c 	  => load_hzrd_out_2c,
-	   ra_is_r7				  => ra_is_r7,
+	   ra_is_r7				  => ra_is_r7,	
 	   rb_is_r7				  => rb_is_r7,
 	   rc_is_r7 			  => rc_is_r7
  );
@@ -658,7 +566,7 @@ shifter1:shifter port map(
 	   stage4_out_hzrd				=> stage4_op,
 	   p_carry_com                  => p_carry_com,
 	   p_zero_com                   => p_zero_com
-
+ 	
  );
 
 
@@ -710,7 +618,7 @@ shifter1:shifter port map(
 	   sm_active 				=> sm_active,
 
 	   stage5_out_hzrd			=> stage5_op
-
+ 	
  );
 
 
@@ -740,12 +648,12 @@ port map (
 	   wr_7 			  =>  wr_7,
 	   stage6_out_hzrd		  =>   stage6_op,
 	   pc_to_r7 			  => pc_to_r7
-
+	
 );
 
 
  reg_read_write: reg_file
-
+    
     port map (
 	   clk        => clk,
 	   rst        => rst,
@@ -768,5 +676,5 @@ port map (
  			rrf_d3_6;
 rf_wr <= write_to_reg when lm_active = '1' else
 	reg_wr1_6;
-
+ 	
  end architecture behave;
