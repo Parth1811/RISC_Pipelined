@@ -53,10 +53,11 @@ stage6_out_hzrd <= stage_5_out_6 when reg_inp_data_ctl='0' else
 
  process(clk)
  begin
- if rising_edge(clk) then
-
- valid_out1 <= valid_in;
- end if;
+    if(clk'event and clk='1') then
+        if(rst = '0') then
+ 		valid_out1 <= valid_in;
+	end if;
+     end if;
  end process;
 
 
