@@ -74,7 +74,7 @@ port (
 		carry_yes_i, zero_yes_i			  			: in std_logic;
 		imm6_i															: in std_logic_vector(5 downto 0);
 		imm9_i 															: in std_logic_vector(8 downto 0);
-		reg_a_addr, reg_b_addr, reg_c_addr	: in std_logic_vector(2 downto 0);
+		reg_a_addr, reg_c_addr			: in std_logic_vector(2 downto 0);
 		r_a_hzrd, r_b_hzrd, r_c_hzrd				: in std_logic_vector(2 downto 0);
 		read_from_a													: in std_logic;
 		stage4_op, stage5_op, stage6_op			: in std_logic_vector(15 downto 0);
@@ -466,7 +466,6 @@ shifter1:shifter port map(
 	   imm6_i                     => imm6_2,
 	   imm9_i                     => imm9_2,
 	   reg_a_addr_i               =>reg_a_addr_2,
-	   reg_b_addr                 =>  reg_b_addr_2,
 	   reg_c_addr                 => reg_c_addr_2,
 
 	   read_from_a				  => read_from_a,
