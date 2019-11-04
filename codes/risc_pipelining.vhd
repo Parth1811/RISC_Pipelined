@@ -198,7 +198,6 @@ end entity;
 	   jal_yes				: in std_logic;
 	   sm_active 				: in std_logic;
 	   stage_5_out_6 			: in std_logic_vector(15 downto 0);
-	   reg_a_adr_in				: in std_logic_vector(2 downto 0);
 	   pc_old_i				: in std_logic_vector(15 downto 0);
 	   carry_yes_i 				:  in std_logic;
 	   zero_yes_i				: in std_logic;
@@ -636,7 +635,6 @@ port map (
 	   reg_wr                 =>  reg_wr_6_5,
 	   pc_to_r7i 			  =>  pc_to_r7i,
 	   stage_5_out_6          =>   stage_5_out_5,
-	   reg_a_adr_in           =>   reg_a_addr_5,
 	   pc_old_i		          =>  pc_old_5,
 	   carry_yes_i            =>   carry_yes_5,
 	   zero_yes_i             =>   zero_yes_5,
