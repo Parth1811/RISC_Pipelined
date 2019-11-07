@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity stage4 is
+entity execute_stage is
 	port(
 	   clk     : in  std_logic;
 	   rst		: in std_logic;
@@ -62,7 +62,7 @@ entity stage4 is
 end entity;
 
 
-architecture behav of stage4 is
+architecture behav of execute_stage is
 
 component ALU is
 	port (

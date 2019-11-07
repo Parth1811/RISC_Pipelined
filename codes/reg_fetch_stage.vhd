@@ -2,7 +2,7 @@
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity stage3 is
+entity reg_fetch_stage is
 	port (
 		clk, rst , valid_in									: in  std_logic;
 		jlr_yes, beq_yes, jal_yes 					: in std_logic;
@@ -50,7 +50,7 @@ entity stage3 is
 end entity;
 
 
-architecture behave of stage3 is
+architecture behave of reg_fetch_stage is
 
 	signal valid_out1 : std_logic := '0';
 	signal rf_d11,rf_d22 : std_logic_vector(15 downto 0);

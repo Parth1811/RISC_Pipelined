@@ -13,7 +13,7 @@ end entity ;
 
 architecture behave of risc_pipelining is
 
-  component stage1 is
+  component fetch_stage is
     port(
   	   clk, rst, valid_in      : in  std_logic;
   	   pc_control              : in std_logic_vector(1 downto 0);
@@ -23,7 +23,7 @@ architecture behave of risc_pipelining is
     );
   end component ;
 
-  component stage2 is
+  component decode_stage is
     port(
       clk, rst	                          : in  std_logic;
     	valid_in 		                        : in std_logic;
@@ -48,7 +48,7 @@ architecture behave of risc_pipelining is
     );
   end component ;
 
-  component stage3 is
+  component reg_fetch_stage is
     port(
 		  clk, rst , valid_in									: in  std_logic;
 		  jlr_yes, beq_yes, jal_yes 					: in std_logic;
@@ -94,7 +94,7 @@ architecture behave of risc_pipelining is
     );
   end component;
 
-  component stage4 is
+  component execute_stage is
     port(
       clk                 : in  std_logic;
       rst		              : in std_logic;
@@ -133,7 +133,7 @@ architecture behave of risc_pipelining is
   end component ;
 
 
-  component stage5 is
+  component mem_rw_stage is
     port(
       clk, rst, valid_in      : in std_logic;
       p_carry_i               : in std_logic;    p_carry_o               : out std_logic;
@@ -164,7 +164,7 @@ architecture behave of risc_pipelining is
     );
   end component ;
 
-  component stage6 is
+  component reg_w_stage is
     port(
       clk     			     	: in  std_logic;
       rst				         	: in std_logic;
@@ -353,7 +353,7 @@ architecture behave of risc_pipelining is
     		bit1                   => shifter_bit_0
 	    );
 
-    stg1: stage1
+    stg1: fetch_stage
       port map (
         clk                => clkk_1,
         rst			           => rst,
@@ -366,7 +366,7 @@ architecture behave of risc_pipelining is
         valid_out          => valid_out_1
       );
 
-    stg2 : stage2
+    stg2 : decode_stage
       port map (
         clk                            => clkk_2,
         rst	                          =>  rst,
@@ -410,7 +410,7 @@ architecture behave of risc_pipelining is
 
       );
 
-    stg3: stage3
+    stg3: reg_fetch_stage
       port map (
         clk                        => clkk_3,
         rst		                  => rst,
@@ -485,7 +485,7 @@ architecture behave of risc_pipelining is
       );
 
 
-    stg4: stage4
+    stg4: execute_stage
       port map (
         clk                         => clkk_4,
         rst                         => rst,
@@ -534,7 +534,7 @@ architecture behave of risc_pipelining is
       );
 
 
-    stg5 : stage5
+    stg5 : mem_rw_stage
       port map (
 
         clk                      =>  clk,
@@ -584,7 +584,7 @@ architecture behave of risc_pipelining is
         stage5_out_hzrd			=> stage5_op
       );
 
-    stg6: stage6
+    stg6: reg_w_stage
       port map (
         sm_active              => sm_active_7,
         clk                    =>  clk,

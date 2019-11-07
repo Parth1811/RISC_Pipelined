@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity stage5 is
+entity mem_rw_stage is
  port (
 	   clk, rst, valid_in      : in std_logic;
 	   p_carry_i               : in std_logic;    p_carry_o               : out std_logic;
@@ -36,7 +36,7 @@ entity stage5 is
 
 end entity;
 
-architecture behav of stage5 is
+architecture behav of mem_rw_stage is
 
   component memory2 is
   	port (

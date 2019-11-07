@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity stage1 is
+entity fetch_stage is
 
   port (
   	   clk, rst, valid_in      : in  std_logic;
@@ -15,7 +15,7 @@ entity stage1 is
 
 end entity ;
 
-architecture behave of stage1 is
+architecture behave of fetch_stage is
 
 	component ALU is
 		port (
@@ -40,8 +40,8 @@ architecture behave of stage1 is
   signal valid_out_temp : std_logic := '0';
   signal pc_temp : std_logic_vector(15 downto 0):= (others => '0');
   constant Z16 : std_logic_vector(15 downto 0):= (others  => '0');
-  
-  
+
+
  begin
 
   valid_out <= valid_out_temp;

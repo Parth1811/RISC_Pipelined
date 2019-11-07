@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
- entity stage6 is
-    
+ entity reg_w_stage is
+
     port (
 	   clk     				: in  std_logic;
 	   rst					: in std_logic;
@@ -30,10 +30,10 @@ use ieee.numeric_std.all;
 	   stage6_out_hzrd 			: out std_logic_vector(15 downto 0);
 	   wr_7 				: out std_logic
      );
-		
+
  end entity ;
 
-architecture behav of stage6 is
+architecture behav of reg_w_stage is
 
 signal valid_out1 : std_logic := '0';
 begin
@@ -42,7 +42,7 @@ wr_7 <= valid_in or sm_active;
  valid_out <= valid_out1;
 
 pc_to_r7 <= pc_to_r7i;
-reg_wr1 <= reg_wr and (((not carry_yes_i) or p_carry_i) and ((not zero_yes_i) or p_zero_i)) and valid_in; 		
+reg_wr1 <= reg_wr and (((not carry_yes_i) or p_carry_i) and ((not zero_yes_i) or p_zero_i)) and valid_in;
 
 rrf_d3 <= stage_5_out_6 when reg_inp_data_ctl='0' else
 			 pc_old_i when reg_inp_data_ctl='1';

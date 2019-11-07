@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity stage2 is
+entity decode_stage is
     port (
     	   clk, rst	                       : in  std_logic;
     	   valid_in		               : in std_logic;
@@ -27,7 +27,7 @@ entity stage2 is
      );
 end entity ;
 
-architecture behave of stage2 is
+architecture behave of decode_stage is
 
 	component ALU is
 		port (
