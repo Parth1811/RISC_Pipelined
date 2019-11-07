@@ -32,7 +32,7 @@ use ieee.numeric_std.all;
     
 port (
     	   clk, rst	                       : in  std_logic;
-    	   valid_in, 		               : in std_logic;
+    	   valid_in 		               : in std_logic;
     	   ir, pc_old_i                        : in std_logic_vector(15 downto 0);
     	   pc_old_o, pc_plus_imm               : out std_logic_vector(15 downto 0);
     	   imm6                                : out std_logic_vector(5 downto 0);
@@ -143,7 +143,6 @@ port (
 
 	   stage4_out_hzrd : out std_logic_vector(15 downto 0)
 	);
-end entity;
 		
  end component ;
 
@@ -315,7 +314,7 @@ pc_control <= "10" when (jlr_yes_2 and valid_out_2)='1' else
 			  "00" ;
 
 pc_plus_imm_1 <= pc_plus_imm_3 when (beq_yes_2 and (not xor_comp_3) and valid_out_2)='1' else 
-                 pc_plus_imm_2 when  ((not(beq_yes_2 and (not xor_comp_3) and va7lid_out_2)) and (valid_out_1 and jal_yes_2)) ='1'; 
+                 pc_plus_imm_2 when  ((not(beq_yes_2 and (not xor_comp_3) and valid_out_2)) and (valid_out_1 and jal_yes_2)) ='1'; 
 
 
 valid_hzrd_0 <= valid_out_33 and (not beq_yes_3);
@@ -462,7 +461,7 @@ shifter1:shifter port map(
 	   zero_yes_i                 => zero_yes_2,
 	   imm6_i                     => imm6_2,
 	   imm9_i                     => imm9_2,
-	   reg_a_addr_i               =>reg_a_addr_2,
+	   reg_a_addr               =>reg_a_addr_2,
 	   reg_c_addr                 => reg_c_addr_2,
 
 	   read_from_a				  => read_from_a,

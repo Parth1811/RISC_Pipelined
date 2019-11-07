@@ -15,8 +15,8 @@ entity controller is
 			clk1,clk2,clk3,clk4										  : out std_logic;
 			write_to_reg, write_to_mem						  : out std_logic;
 			shift_now, lm_active_now, sm_active_now : out std_logic;
-			load_init_mem_addr, load_lukhi3					:	out std_logic;
-			load_lukhi4, sm_active_7 								: out std_logic
+			load_init_mem_addr, temp3					:	out std_logic;
+			temp4, sm_active_7 								: out std_logic
 		);
 end entity;
 
@@ -41,7 +41,7 @@ architecture Behav of controller is
 	  load_init_mem_addr <= '1' when (state = S1 or state = S4) else  '0';
 		write_to_reg 			 <= '1' when (state = S3 and shifter_bit_0 = '1') else '0';
 		write_to_mem 			 <= '1' when (state = S6 and shifter_bit_0 = '1') else '0';
-		load_lukhi4        <= '1' when (state = lukhi4  or state = lukhi5) else '0';
+		temp4        <= '1' when (state = lukhi4  or state = lukhi5) else '0';
 
 	 	write_mem_data <= reg_val;
 	 	write_reg_data <= reg_val;
@@ -49,8 +49,8 @@ architecture Behav of controller is
 	 	reg_addr_out <= counter(2 downto 0);
 
 	 	clk1 <= '1' when state = S0 else '0';
-		clk2 <= clk1;
-		clk3 <= clk2;
+		clk2 <= '1' when state = S0 else '0';
+		clk3 <= '1' when state = S0 else '0';
 		clk4 <= '1' when (state = S0 or state = S1 or state = S4 or state = lukhi3 or state = lukhi4 or state = lukhi5) else '0';
 		sm_active_7 <= not(counter(0) or counter(1) or counter(2)) when (state = S6) else '0';
 
@@ -61,7 +61,7 @@ architecture Behav of controller is
 				elsif(rising_edge(clk))then
 					case state is
 						when S0 =>
-							load_lukhi3 <= '0' ;
+							temp3 <= '0' ;
 							if(valid_2 = '1' and lm_out_2 = '1')then
 								state <= S1;
 							elsif(valid_2 = '1' and sm_out_2 = '1')then
@@ -121,11 +121,11 @@ architecture Behav of controller is
 							end if ;
 
 						when lukhi3 =>
-							load_lukhi3 <= '0' ;
+							temp3 <= '0' ;
 							state <= lukhi4;
 
 						when lukhi4 =>
-							load_lukhi3 <= '1' ;
+							temp3 <= '1' ;
 							state <= lukhi5;
 
 						when lukhi5 =>

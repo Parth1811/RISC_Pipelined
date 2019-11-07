@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity stage2 is
     port (
     	   clk, rst	                       : in  std_logic;
-    	   valid_in,		               : in std_logic;
+    	   valid_in		               : in std_logic;
     	   ir, pc_old_i                        : in std_logic_vector(15 downto 0);
     	   pc_old_o, pc_plus_imm               : out std_logic_vector(15 downto 0);
     	   imm6                                : out std_logic_vector(5 downto 0);
