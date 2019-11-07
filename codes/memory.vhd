@@ -20,7 +20,7 @@ architecture Form of memory1 is
 	signal Memory:
 		regarray:=(
 
-        0 => "0000001010011000", --add
+        0 => "0011011011110010", --add
 				1 => "0000100101010010", --adc
 				2 => "0000110100001000", --ndu
 				3 => "0000010000111000", --lhi
@@ -35,7 +35,7 @@ architecture Form of memory1 is
 
 begin
 
-	Dout <= Memory(conv_integer(A));
+  Dout <= Memory(conv_integer(A)) when (conv_integer(A) < 100) else "0000000000000000";
 	Mem_write:
 	process (W,Din,A,clk)
 		begin
@@ -82,11 +82,11 @@ architecture Form of memory2 is
         8 => "0000111100010110",
         9 => "0001000100010010",
         10 => "0001001100010100",
-     		others => "0000000000000000");
+     		others => "0000000000111000");
 
 begin
 
-	Dout <= Memory2(conv_integer(A));
+	Dout <= Memory2(conv_integer(A)) when (conv_integer(A) < 100) else "0000000000000000";
 	Mem_write:
 	process (W,Din,A,clk)
 		begin
