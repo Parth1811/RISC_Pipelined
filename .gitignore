@@ -1,1 +1,10 @@
 *.bak
+*.pyc
+output_files*
+*.qpf
+*.qsf
+*db*
+simulation*
+timing*
+*.rpt
+*.qws
