@@ -29,15 +29,6 @@ end entity ;
 
 architecture behave of decode_stage is
 
-	component ALU is
-		port (
-			A, B	: in std_logic_vector(15 downto 0);
-			OP 		: in std_logic_vector(1 downto 0);
-			O 		: out std_logic_vector(15 downto 0);
-			C, Z	: out std_logic
-		);
-	end component;
-
   function check_hazard(a, b : in std_logic_vector) return std_logic is
 	  variable hazard : std_logic := '0';
 		begin
@@ -60,7 +51,7 @@ architecture behave of decode_stage is
 
   signal yin,imm6_16,imm9_se_16 : std_logic_vector(15 downto 0);
   signal r_a1,r_a2,r_a3,r_b,r_c,r_a,r_a_hzrdn,r_b_hzrdn,r_c_hzrdn,r_a_hzrdx,r_b_hzrdx,r_c_hzrdx : std_logic_vector(2 downto 0);
-  signal carry1,zero1,pc_plus_imm_ctl: std_logic;
+  signal pc_plus_imm_ctl: std_logic;
   signal sw_yes1,lm_yes1,sm_yes1,adi_yes1,lw_yes1,beq_yes1,lhi_yes1,lw_prev1,jal_yes1,jlr_yes1,r_a_hzrd1,r_b_hzrd1,r_c_hzrd1:std_logic;
   signal valid_out1 : std_logic := '0';
 
@@ -72,14 +63,8 @@ architecture behave of decode_stage is
     r_a <= ir(11 downto 9);
     valid_out <= valid_out1;
 
-    stage_4_alu: alu
-      port map(
-      	 A     =>  pc_old_i,
-      	 B     =>  yin,
-      	 OP    =>  "00",
-      	 O     =>  pc_plus_imm,
-      	 C     =>  carry1,
-      	 Z     =>  zero1);
+    pc_plus_imm <= std_logic_vector(to_signed((to_integer(signed(pc_old_i)) + to_integer(signed(yin))), 16));
+
 
    imm6_16(5 downto 0) <= ir(5 downto 0);
    imm6_16(15 downto 6) <= (others => '0');
