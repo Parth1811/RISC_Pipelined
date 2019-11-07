@@ -13,6 +13,55 @@ end entity ;
 
 architecture behave of risc_pipelining is
 
+
+    component reg_file is
+      port(
+        clk        : in   std_logic;
+        rst        : in   std_logic;
+        wr         : in   std_logic;
+
+        wr_7	      : in std_logic;
+        Reg7	      : in std_logic_vector(15 downto 0);
+
+        rf_a1      : in  std_logic_vector(2 downto 0);
+        rf_d1      : out  std_logic_vector(15 downto 0);
+
+        rf_a2      : in  std_logic_vector(2 downto 0);
+        rf_d2      : out  std_logic_vector(15 downto 0);
+
+        rf_a3      : in  std_logic_vector(2 downto 0);
+        rf_d3      : in  std_logic_vector(15 downto 0)
+      );
+    end component ;
+
+    component controller is
+    	port(
+  			sm_active_7            : out std_logic;
+  			clk                    : in std_logic;
+  			rst                    : in std_logic;
+  			valid_2                : in std_logic;
+  			lm_out_2               : in std_logic;
+  			sm_out_2               : in std_logic;
+  			mem_addr_in            : in std_logic_vector(15 downto 0);
+  			mem_data_in            : in std_logic_vector(15 downto 0);
+  			reg_data_in            : in std_logic_vector(15 downto 0);
+        shifter_in             : in std_logic_vector(7 downto 0);
+  			next_mem_addr          : out std_logic_vector(15 downto 0);
+  			clk1,clk2,clk3,clk4    : out std_logic;
+  			write_to_reg           : out std_logic;
+  			write_to_mem           : out std_logic;
+  			write_mem_data         : out std_logic_vector(15 downto 0);
+  			write_reg_data         : out std_logic_vector(15 downto 0);
+  			reg_addr_out           : out std_logic_vector(2 downto 0);
+  			lm_active_now          : out std_logic;
+  			sm_active_now          : out std_logic;
+  			load_init_mem_addr     : out std_logic;
+  			load_hzrd_out_2        : in std_logic;
+  			temp3                  : out std_logic;
+  			temp4                  : out std_logic
+      );
+  	end component;
+
   component fetch_stage is
     port(
   	   clk, rst, valid_in      : in  std_logic;
@@ -191,59 +240,6 @@ architecture behave of risc_pipelining is
     );
   end component;
 
-  component reg_file is
-    port(
-      clk        : in   std_logic;
-      rst        : in   std_logic;
-      wr         : in   std_logic;
-
-      wr_7	      : in std_logic;
-      Reg7	      : in std_logic_vector(15 downto 0);
-
-      rf_a1      : in  std_logic_vector(2 downto 0);
-      rf_d1      : out  std_logic_vector(15 downto 0);
-
-      rf_a2      : in  std_logic_vector(2 downto 0);
-      rf_d2      : out  std_logic_vector(15 downto 0);
-
-      rf_a3      : in  std_logic_vector(2 downto 0);
-      rf_d3      : in  std_logic_vector(15 downto 0)
-    );
-  end component ;
-
-  component controller is
-  	port(
-			sm_active_7            : out std_logic;
-			clk                    : in std_logic;
-			rst                    : in std_logic;
-			valid_2                : in std_logic;
-			lm_out_2               : in std_logic;
-			sm_out_2               : in std_logic;
-			mem_addr_in            : in std_logic_vector(15 downto 0);
-			mem_data_in            : in std_logic_vector(15 downto 0);
-			reg_data_in            : in std_logic_vector(15 downto 0);
-			shifter_bit_0          : in std_logic;
-			next_mem_addr          : out std_logic_vector(15 downto 0);
-			clk1,clk2,clk3,clk4    : out std_logic;
-			write_to_reg           : out std_logic;
-			write_to_mem           : out std_logic;
-			write_mem_data         : out std_logic_vector(15 downto 0);
-			write_reg_data         : out std_logic_vector(15 downto 0);
-			reg_addr_out           : out std_logic_vector(2 downto 0);
-			shift_now              : out std_logic;
-			lm_active_now          : out std_logic;
-			sm_active_now          : out std_logic;
-			load_init_mem_addr     : out std_logic;
-			load_hzrd_out_2        : in std_logic;
-			temp3                  : out std_logic;
-			temp4                  : out std_logic
-    );
-	end component;
-
-	component shifter is
-	   port(clk,shift,wr: in std_logic ;writeData : in std_logic_vector(7 downto 0);bit1: out std_logic);
-	end component;
-
   signal  reg_b_val_3,pc_plus_imm_1,pc_plus_imm_2,pc_plus_imm_3,ir_1,pc_old_1,pc_old_2,pc_old_3,pc_old_4,pc_old_5: std_logic_vector(15 downto 0);
   signal  t1_3,t2_3,t2_4,t2_5,alu_out_4,stage_5_out_5,rf_d1_3,rf_d2_3,rrf_d3_6,R7,pc_to_r7,pc_to_r7i : std_logic_vector(15 downto 0);
 
@@ -263,12 +259,14 @@ architecture behave of risc_pipelining is
   signal  valid_in_1,valid_in_2,valid_decider_1,valid_decider_2 : std_logic;
   signal  pc_control_decider: std_logic;
   signal  ra_is_r7,rb_is_r7,rc_is_r7: std_logic;
-  signal lm_out_2,sm_out_2,shifter_bit_0,shift_now,clk1,clk2,clk3,clk4,write_to_mem,write_to_reg,load_init_mem_addr,lm_active,sm_active,rf_wr:std_logic;
+  signal lm_out_2,sm_out_2,clk1,clk2,clk3,clk4,write_to_mem,write_to_reg,load_init_mem_addr,lm_active,sm_active,rf_wr:std_logic;
   signal mem_addr_in,reg_data_in,mem_to_ctrl_data,ctrl_to_reg_data,ctrl_to_mem_data,next_mem_addr,rf_d3,stage4_op,stage5_op,stage6_op:std_logic_vector(15 downto 0);
   signal reg_addr_out,rf_a1,rf_a3,ctrl_to_reg_addr,r_b_hzrd,r_c_hzrd,r_a_hzrd:std_logic_vector(2 downto 0);
   signal clkk_1,clkk_2,clkk_3,clkk_4,wait_for_lmsm,wr_7 : std_logic;
   signal valid_out_33,valid_out_44,valid_out_55,valid_hzrd_0,valid_hzrd_1,valid_hzrd_2,load_hzrd_out_2a,load_hzrd_out_2,load_hzrd_out_2c,load_hzrd_out_2b,read_from_a :std_logic;
   signal jal_yes_4,jlr_yes_4,beq_yes_4,jal_yes_5,beq_yes_5,jlr_yes_5,temp3,temp4,sm_active_7,p_carry_com,p_zero_com: std_logic;
+
+  alias shifter_in is imm9_2(7 downto 0);
 
   begin
 
@@ -324,8 +322,8 @@ architecture behave of risc_pipelining is
      		mem_addr_in            => mem_addr_in,
      		reg_data_in            => rf_d1_3,
      		mem_data_in            => mem_to_ctrl_data,
-     		shifter_bit_0          => shifter_bit_0,
      		next_mem_addr          => next_mem_addr,
+        shifter_in             => shifter_in,
      		clk1                   => clk1,
      		clk2                   => clk2,
      		clk3                   => clk3,
@@ -335,22 +333,12 @@ architecture behave of risc_pipelining is
      		write_mem_data         => ctrl_to_mem_data,
      		write_reg_data         => ctrl_to_reg_data,
      		reg_addr_out           => ctrl_to_reg_addr,
-     		shift_now              => shift_now,
      		lm_active_now          => lm_active,
      		sm_active_now          => sm_active,
      		load_init_mem_addr     => load_init_mem_addr,
      		load_hzrd_out_2        => load_hzrd_out_2,
      		temp3                  => temp3,
      		temp4                  => temp4
-	    );
-
-    shifter1: shifter
-      port map(
-    		clk                    => clk ,
-    		shift                  => shift_now,
-    		wr                     => clk3,
-    		writeData              => imm9_2(7 downto 0),
-    		bit1                   => shifter_bit_0
 	    );
 
     stg1: fetch_stage

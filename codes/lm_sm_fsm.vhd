@@ -5,16 +5,16 @@ use ieee.numeric_std.all;
 entity controller is
 	port(
 			clk, rst, valid_2											  : in std_logic;
-			shifter_bit_0													  : in std_logic;
 			lm_out_2, sm_out_2, load_hzrd_out_2 	  : in std_logic;
 			mem_addr_in, reg_data_in, mem_data_in   : in std_logic_vector(15 downto 0);
+			shifter_in													 	  : in std_logic_vector(7 downto 0);
 
 			next_mem_addr													  : out std_logic_vector(15 downto 0);
 			write_mem_data, write_reg_data				  : out std_logic_vector(15 downto 0);
 			reg_addr_out													  : out std_logic_vector(2 downto 0);
 			clk1,clk2,clk3,clk4										  : out std_logic;
 			write_to_reg, write_to_mem						  : out std_logic;
-			shift_now, lm_active_now, sm_active_now : out std_logic;
+			lm_active_now, sm_active_now 			: out std_logic;
 			load_init_mem_addr, temp3					:	out std_logic;
 			temp4, sm_active_7 								: out std_logic
 		);
@@ -22,13 +22,31 @@ end entity;
 
 architecture Behav of controller is
 
+	component shifter is
+	   port(
+		   clk,shift,wr : in std_logic;
+			 writeData		: in std_logic_vector(7 downto 0);
+			 bit1					: out std_logic
+		 );
+	end component;
+
 	type state_type is ( S0,S1,S2,S3,S4,S5,S6,lukhi1,lukhi2,lukhi3,lukhi4,lukhi5);
 	signal state : state_type := S0;
 	signal alu_out,alu_in,reg_val: std_logic_vector(15 downto 0) ;
 	signal counter:std_logic_vector(15 downto 0) := x"0000";
 	signal car_dump,zer_dump:std_logic;
+	signal shift_now, shifter_bit_0, clk_3_temp:std_logic;
 
 	begin
+
+		shifter_instance: shifter
+			port map(
+				clk                    => clk ,
+				shift                  => shift_now,
+				wr                     => clk_3_temp,
+				writeData              => shifter_in,
+				bit1                   => shifter_bit_0
+			);
 
 		alu_in <= counter 		when (state = S3 or state = S5) else
     					mem_addr_in when (state = S2 or state = S6) else
@@ -51,6 +69,7 @@ architecture Behav of controller is
 	 	clk1 <= '1' when state = S0 else '0';
 		clk2 <= '1' when state = S0 else '0';
 		clk3 <= '1' when state = S0 else '0';
+		clk_3_temp <= '1' when state = S0 else '0';
 		clk4 <= '1' when (state = S0 or state = S1 or state = S4 or state = lukhi3 or state = lukhi4 or state = lukhi5) else '0';
 		sm_active_7 <= not(counter(0) or counter(1) or counter(2)) when (state = S6) else '0';
 
