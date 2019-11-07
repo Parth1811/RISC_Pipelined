@@ -17,15 +17,6 @@ end entity ;
 
 architecture behave of fetch_stage is
 
-	component ALU is
-		port (
-			A, B	: in std_logic_vector(15 downto 0);
-			OP 		: in std_logic_vector(1 downto 0);
-			O 		: out std_logic_vector(15 downto 0);
-			C, Z	: out std_logic
-		);
-	end component;
-
   component memory1 is
 
     port (
@@ -45,16 +36,9 @@ architecture behave of fetch_stage is
  begin
 
   valid_out <= valid_out_temp;
+  pc_temp <= std_logic_vector(to_signed((to_integer(signed(pc)) + 1), 16));
 
-  pc_alu: alu
-	port map(
-       A    =>  pc,
-    	 B    =>  x"0001",
-    	 OP   =>  "00" ,
-    	 O    =>  pc_temp
-  );
-
- code_mem: memory1
+  code_mem: memory1
     port map (
     	  clk   => clk ,
     	  A     => pc,
