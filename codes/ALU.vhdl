@@ -4,35 +4,38 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 package project is
-    	component adder_16bit is
-    	  port ( A : in std_logic_vector (15 downto 0);
-           	B : in std_logic_vector (15 downto 0);
-           	sum : out std_logic_vector (15 downto 0);
-	   	Cout: out std_logic );
-  	end component;
+	component adder_16bit is
+	  port(
+      A, B  : in std_logic_vector (15 downto 0);
+      sum   : out std_logic_vector (15 downto 0);
+ 	    Cout  : out std_logic
+    );
+  end component;
 
 	component subtractor_16bit is
-	  port ( A : in std_logic_vector (15 downto 0);
-	         B : in std_logic_vector (15 downto 0);
-	         diff : out std_logic_vector (15 downto 0)) ;
+	  port(
+      A, B : in std_logic_vector (15 downto 0);
+      diff : out std_logic_vector (15 downto 0)
+    );
 	end component ;
 
 	component nand_16bit is
-	  port ( A : in std_logic_vector (15 downto 0);
-	         B : in std_logic_vector (15 downto 0);
-	         nand_out : out std_logic_vector (15 downto 0)) ;
+	  port(
+      A, B      : in std_logic_vector (15 downto 0);
+      nand_out  : out std_logic_vector (15 downto 0)
+    );
 	end component;
 
 	component MUX_4 is
 		port (
-	      S1, S0  : in std_logic;
+	      S1, S0         : in std_logic;
 	      X1, X2, X3, X4 : in std_logic_vector(15 downto 0) ;
-	      Z : out std_logic_vector(15 downto 0)
+	      Z              : out std_logic_vector(15 downto 0)
 		);
 	end component;
 
-  	component TwosCompliment is
-		port (
+	component TwosCompliment is
+		port(
 			X : in std_logic_vector (15 downto 0);
 			Z : out std_logic_vector(15 downto 0)
 		);
@@ -40,7 +43,7 @@ package project is
 end project;
 
 
-
+---------------------------------------------------------------------
 library work;
 use work.project.all;
 library std;
@@ -70,9 +73,7 @@ architecture Equations of adder_16bit is
 
 end Equations;
 
-
-
-
+---------------------------------------------------------------------
 library work;
 use work.project.all;
 library std;
@@ -95,9 +96,7 @@ architecture Equations of nand_16bit is
 
   end Equations;
 
-
-
-
+---------------------------------------------------------------------
 library work;
 use work.project.all;
 library std;
@@ -126,9 +125,7 @@ begin
   end Equations;
 
 
-
-
-
+---------------------------------------------------------------------
 library work;
 use work.project.all;
 library std;
@@ -149,12 +146,11 @@ begin
 			Z(i) <= (X1(i) and ((not S0) and (not S1))) or (X2(i) and ((not S1) and S0)) or (X3(i) and (S1 and (not S0))) or (X4(i) and (S0 and S1));
 	end generate genmux;
 
-end architecture ; 
+end architecture ;
 
 
 
-
-
+----------------------------------------------------------------------
 library work;
 use work.project.all;
 library std;
@@ -187,6 +183,7 @@ end architecture ; -- arch
 
 
 
+---------------------------------------------------------------------
 library work;
 use work.project.all;
 library std ;
