@@ -81,11 +81,11 @@ architecture Form of memory2 is
         8 => "0000111100010110",
         9 => "0001000100010010",
         10 => "0001001100010100",
-     		others => "0000000000000000");
+     		others => "0000000000111000");
 
 begin
 
-	Dout <= Memory2(conv_integer(A));
+	Dout <= Memory2(conv_integer(A)) when (conv_integer(A) < 99) else "0000000000000000";
 	Mem_write:
 	process (W,Din,A,clk)
 		begin
