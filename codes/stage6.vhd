@@ -19,7 +19,6 @@ use ieee.numeric_std.all;
 	   jal_yes				: in std_logic;
 	   sm_active 				: in std_logic;
 	   stage_5_out_6 			: in std_logic_vector(15 downto 0);
-	   reg_a_adr_in				: in std_logic_vector(2 downto 0);
 	   pc_old_i				: in std_logic_vector(15 downto 0);
 	   carry_yes_i 				:  in std_logic;
 	   zero_yes_i				: in std_logic;

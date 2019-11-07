@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity stage2 is
     port (
-    	   clk, hzrd_clk, rst                  : in  std_logic;
-    	   valid_in, load_lukhi3               : in std_logic;
+    	   clk, rst	                       : in  std_logic;
+    	   valid_in,		               : in std_logic;
     	   ir, pc_old_i                        : in std_logic_vector(15 downto 0);
     	   pc_old_o, pc_plus_imm               : out std_logic_vector(15 downto 0);
     	   imm6                                : out std_logic_vector(5 downto 0);
@@ -115,7 +115,7 @@ architecture behave of stage2 is
    r_b_hzrd <= r_b_hzrdn;
    r_c_hzrd <= r_c_hzrdn;
 
-   stg2:process(hzrd_clk,clk,rst)
+   stg2:process(clk,rst)
 
     begin
       if(rst='1') then

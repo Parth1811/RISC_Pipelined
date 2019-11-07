@@ -6,7 +6,6 @@ entity stage3 is
 	port (
 		clk, rst , valid_in									: in  std_logic;
 		jlr_yes, beq_yes, jal_yes 					: in std_logic;
-		load_lukhi													: in std_logic;
 
 		reg_addr2_ctl 											: in std_logic;
 		input_alu2_ctl_4 										: in std_logic_vector(1 downto 0);
@@ -20,7 +19,7 @@ entity stage3 is
 		carry_yes_i, zero_yes_i			  			: in std_logic;
 		imm6_i															: in std_logic_vector(5 downto 0);
 		imm9_i 															: in std_logic_vector(8 downto 0);
-		reg_a_addr, reg_b_addr, reg_c_addr	: in std_logic_vector(2 downto 0);
+		reg_a_addr, reg_c_addr			: in std_logic_vector(2 downto 0);
 		r_a_hzrd, r_b_hzrd, r_c_hzrd				: in std_logic_vector(2 downto 0);
 		read_from_a													: in std_logic;
 		stage4_op, stage5_op, stage6_op			: in std_logic_vector(15 downto 0);
