@@ -5,6 +5,7 @@ output_files*
 *.qsf
 *db*
 simulation*
+incremental_db*
 timing*
 *.rpt
 *.qws
