@@ -4,6 +4,8 @@ use ieee.numeric_std.all;
 
 entity reg_fetch_stage is
 	port (
+	 		reg_b_addr: in std_logic_vector(2 downto 0); reg_b_addr_o: out std_logic_vector(2 downto 0);
+		
 		clk, rst , valid_in									: in  std_logic;
 		jlr_yes, beq_yes, jal_yes 					: in std_logic;
 
@@ -116,6 +118,8 @@ architecture behave of reg_fetch_stage is
 					reg_b_val <= rf_d11;
 					t1 <= rf_d11;
 					t2 <= rf_d22;
+					
+					reg_b_addr_o <= reg_b_addr;
 
 				end if;
 

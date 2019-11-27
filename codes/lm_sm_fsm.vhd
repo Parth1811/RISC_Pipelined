@@ -30,7 +30,7 @@ architecture Behav of controller is
 		 );
 	end component;
 
-	type state_type is ( S0,S1,S2,S3,S4,S5,S6,lukhi1,lukhi2,lukhi3,lukhi4,lukhi5);
+	type state_type is ( S0,S1,S2,S3,S4,S5,S6,temp_state1,temp_state2,temp_state3,temp_state4,temp_state5);
 	signal state : state_type := S0;
 	signal alu_out,alu_in,reg_val: std_logic_vector(15 downto 0) ;
 	signal counter:std_logic_vector(15 downto 0) := x"0000";
@@ -59,7 +59,7 @@ architecture Behav of controller is
 	  load_init_mem_addr <= '1' when (state = S1 or state = S4) else  '0';
 		write_to_reg 			 <= '1' when (state = S3 and shifter_bit_0 = '1') else '0';
 		write_to_mem 			 <= '1' when (state = S6 and shifter_bit_0 = '1') else '0';
-		temp4        <= '1' when (state = lukhi4  or state = lukhi5) else '0';
+		temp4        <= '1' when (state = temp_state4  or state = temp_state5) else '0';
 
 	 	write_mem_data <= reg_val;
 	 	write_reg_data <= reg_val;
@@ -70,7 +70,7 @@ architecture Behav of controller is
 		clk2 <= '1' when state = S0 else '0';
 		clk3 <= '1' when state = S0 else '0';
 		clk_3_temp <= '1' when state = S0 else '0';
-		clk4 <= '1' when (state = S0 or state = S1 or state = S4 or state = lukhi3 or state = lukhi4 or state = lukhi5) else '0';
+		clk4 <= '1' when (state = S0 or state = S1 or state = S4 or state = temp_state3 or state = temp_state4 or state = temp_state5) else '0';
 		sm_active_7 <= not(counter(0) or counter(1) or counter(2)) when (state = S6) else '0';
 
 		process(clk,rst)
@@ -86,15 +86,15 @@ architecture Behav of controller is
 							elsif(valid_2 = '1' and sm_out_2 = '1')then
 								state <= S4;
 							elsif(load_hzrd_out_2 = '1')then
-								state <= lukhi3;
+								state <= temp_state3;
 							else
 								state <= S0;
 							end if;
 
 						when S1 =>
-							state <= lukhi1;
+							state <= temp_state1;
 
-						when lukhi1 =>
+						when temp_state1 =>
 							state <= S2;
 
 						when S2 =>
@@ -115,9 +115,9 @@ architecture Behav of controller is
 							end if ;
 
 						when S4 =>
-							state <= lukhi2;
+							state <= temp_state2;
 
-						when lukhi2 =>
+						when temp_state2 =>
 							state <= S5;
 							next_mem_addr <= mem_addr_in;
 
@@ -139,15 +139,15 @@ architecture Behav of controller is
 								state <= S5;
 							end if ;
 
-						when lukhi3 =>
+						when temp_state3 =>
 							temp3 <= '0' ;
-							state <= lukhi4;
+							state <= temp_state4;
 
-						when lukhi4 =>
+						when temp_state4 =>
 							temp3 <= '1' ;
-							state <= lukhi5;
+							state <= temp_state5;
 
-						when lukhi5 =>
+						when temp_state5 =>
 							state <= S0;
 						end case;
 

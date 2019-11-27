@@ -99,6 +99,9 @@ architecture behave of risc_pipelining is
 
   component reg_fetch_stage is
     port(
+	 		reg_b_addr: in std_logic_vector(2 downto 0); reg_b_addr_o: out std_logic_vector(2 downto 0);
+
+	 
 		  clk, rst , valid_in									: in  std_logic;
 		  jlr_yes, beq_yes, jal_yes 					: in std_logic;
 
@@ -246,7 +249,10 @@ architecture behave of risc_pipelining is
 
   signal  imm9_2,imm9_3: std_logic_vector(8 downto 0);
   signal  imm6_2,imm6_3: std_logic_vector(5 downto 0);
-  signal  reg_a_addr_2,reg_a_addr_3,reg_a_addr_4,reg_a_addr_5,reg_b_addr_2,reg_c_addr_2,rf_a2_3: std_logic_vector(2 downto 0);
+  --signal  reg_a_addr_2,reg_a_addr_3,reg_a_addr_4,reg_a_addr_5,reg_b_addr_2,reg_c_addr_2,rf_a2_3: std_logic_vector(2 downto 0);
+  
+    signal  reg_a_addr_2,reg_a_addr_3,reg_a_addr_4,reg_a_addr_5,reg_b_addr_2,reg_b_addr_3,reg_c_addr_2,rf_a2_3: std_logic_vector(2 downto 0);
+
 
   signal  pc_control,alu_op_2,alu_op_3,input_alu2_ctl_4_2,input_alu2_ctl_4_3: std_logic_vector(1 downto 0);
 
@@ -400,6 +406,10 @@ architecture behave of risc_pipelining is
 
     stg3: reg_fetch_stage
       port map (
+        reg_b_addr                     => reg_b_addr_2,
+        reg_b_addr_o                     => reg_b_addr_3,
+		  
+		  
         clk                        => clkk_3,
         rst		                  => rst,
         valid_in                   => valid_out_2,

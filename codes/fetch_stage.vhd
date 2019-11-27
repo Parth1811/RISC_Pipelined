@@ -49,6 +49,7 @@ architecture behave of fetch_stage is
 
 
   stg1: process(clk,rst)
+  variable ir_temp: std_logic_vector(15 downto 0);
    begin
      if rst = '1' then
         pc <= Z16;
@@ -62,10 +63,24 @@ architecture behave of fetch_stage is
         valid_out_temp <= valid_in;
         pc_old <= pc;
 		  
-		  --if(ir1(15 downto 12) == '0000' or '0001' or '0010'
+		  ir_temp:= ir1;
+		  
+		  if( ir1(15 downto 12) = "0000") then
+					ir_temp(11 downto 9) := ir1(5 downto 3);
+					ir_temp(5 downto 3) := ir1(11 downto 9);
+		  end if;
+		  if( ir1(15 downto 12) = "0010") then
+					ir_temp(11 downto 9) := ir1(5 downto 3);
+					ir_temp(5 downto 3) := ir1(11 downto 9);
+		  end if;
+		  if( ir1(15 downto 12) = "0001") then
+					ir_temp(11 downto 9) := ir1(8 downto 6);
+					ir_temp(8 downto 6) := ir1(11 downto 9);
+		  end if;
 		  
 		  
-        ir <= ir1;
+        --ir <= ir1;
+		  ir <= ir_temp;
 
      end if;
   end process stg1;

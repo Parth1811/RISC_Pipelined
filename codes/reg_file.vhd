@@ -30,14 +30,14 @@ end entity ;
 architecture behave of reg_file is
 	type regarray is array(7 downto 0) of std_logic_vector(15 downto 0);
 	signal REG_file:
-		regarray:=(		0 => x"0018",
-					1 => x"00ff",
-					2 => x"0055",
-					3 => x"ffff",
-					4 => x"0034",
-					5 => x"f000",
-					6 => x"0043",
-					7 => x"0074"
+		regarray:=(		0 => x"0001",
+					1 => x"0005",
+					2 => x"000a",
+					3 => x"0003",
+					4 => x"ffff",
+					5 => x"0000",
+					6 => x"0004",
+					7 => x"0003"
         );
 
   begin
