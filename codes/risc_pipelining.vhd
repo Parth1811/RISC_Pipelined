@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 entity risc_pipelining is
   port(
-	   clk   : in std_logic;
+	   clk ,clock_50  : in std_logic;
 	   rst	 : in std_logic
    );
 

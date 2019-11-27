@@ -61,6 +61,10 @@ architecture behave of fetch_stage is
 
         valid_out_temp <= valid_in;
         pc_old <= pc;
+		  
+		  --if(ir1(15 downto 12) == '0000' or '0001' or '0010'
+		  
+		  
         ir <= ir1;
 
      end if;

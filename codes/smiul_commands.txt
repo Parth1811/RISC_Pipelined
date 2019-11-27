@@ -5,3 +5,4 @@ force -freeze sim:/risc_pipelining/rst 1 0
 run
 force -freeze sim:/risc_pipelining/rst 0 0
 run
+add wave -position insertpoint sim:/risc_pipelining/reg_read_write/Reg_file

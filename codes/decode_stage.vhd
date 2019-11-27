@@ -78,15 +78,24 @@ architecture behave of decode_stage is
    pc_plus_imm_ctl <= (not ((ir(15)) and (ir(14)) and (not ir(13)) and (not ir(12)))) and
                    ((ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12)));
 
-   jal_yes1 <= Check_instr(ir, "1000", rst);
-   adi_yes1 <= Check_instr(ir, "0001", rst);
-   lw_yes1  <= Check_instr(ir, "0100", rst);
-   lm_yes1  <= Check_instr(ir, "0110", rst);
-   sm_yes1  <= Check_instr(ir, "0111", rst);
-   beq_yes1 <= Check_instr(ir, "1100", rst);
-   lhi_yes1 <= Check_instr(ir, "0011", rst);
-   sw_yes1  <= Check_instr(ir, "0101", rst);
-   jlr_yes1 <= Check_instr(ir, "1001", rst);
+--   jal_yes1 <= Check_instr(ir, "1000", rst);
+--   adi_yes1 <= Check_instr(ir, "0001", rst);
+--   lw_yes1  <= Check_instr(ir, "0100", rst);
+--   lm_yes1  <= Check_instr(ir, "0110", rst);
+--   sm_yes1  <= Check_instr(ir, "0111", rst);
+--   beq_yes1 <= Check_instr(ir, "1100", rst);
+--   lhi_yes1 <= Check_instr(ir, "0011", rst);
+--   sw_yes1  <= Check_instr(ir, "0101", rst);
+--   jlr_yes1 <= Check_instr(ir, "1001", rst);
+	jal_yes1 <= ((ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12))) and (not rst);
+	adi_yes1 <= ((not ir(15)) and (not ir(14)) and (not ir(13)) and (ir(12)))and (not rst);
+	lw_yes1 <= ((not ir(15)) and (ir(14)) and (not ir(13)) and (not ir(12)))and (not rst);
+	lm_yes1 <= ((not ir(15)) and (ir(14)) and (ir(13)) and (not ir(12))) and (not rst);
+	sm_yes1 <= ((not ir(15)) and (ir(14)) and (ir(13)) and (ir(12))) and (not rst);
+	beq_yes1 <= ((ir(15)) and ir(14) and (not ir(13)) and (not ir(12))) and (not rst);
+	lhi_yes1 <= ((not ir(15)) and (not ir(14)) and (ir(13)) and (ir(12))) and (not rst);
+	sw_yes1 <= ((not ir(15)) and (ir(14)) and (not ir(13)) and (ir(12))) and (not rst);
+	jlr_yes1 <= ((ir(15)) and (not ir(14)) and (not ir(13)) and (ir(12))) and (not rst);
 
    reg_a_addr <= r_a1;
 
@@ -120,9 +129,21 @@ architecture behave of decode_stage is
         imm6 <= ir(5 downto 0);
         imm9 <= ir(8 downto 0);
         pc_old_o <= pc_old_i;
+		  
+        load_hzrd_out_2a <= lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_a_hzrd1);
+        load_hzrd_out_2b <= lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_b_hzrd1);
+        load_hzrd_out_2c <= lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_c_hzrd1);
 
-        carry_yes <= (Check_instr(ir, "0000", '0') or Check_instr(ir, "0010", '0')) and ir(1) and (not ir(0));
-        zero_yes  <= (Check_instr(ir, "0000", '0') or Check_instr(ir, "0010", '0')) and (not ir(1)) and ir(0);
+--        carry_yes <= (Check_instr(ir, "0000", '0') or Check_instr(ir, "0010", '0')) and ir(1) and (not ir(0));
+--        zero_yes  <= (Check_instr(ir, "0000", '0') or Check_instr(ir, "0010", '0')) and (not ir(1)) and ir(0);
+
+	 carry_yes <= ((not ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12)) and (ir(1)) and (not ir(0)))
+             or ((not ir(15)) and (not ir(14)) and (ir(13)) and (not ir(12)) and (ir(1)) and (not ir(0)));
+
+     zero_yes <= ((not ir(15)) and (not ir(14)) and (not ir(13)) and (not ir(12)) and (not ir(1)) and (ir(0)))
+             or ((not ir(15)) and (not ir(14)) and (ir(13)) and (not ir(12)) and (not ir(1)) and (ir(0)));
+				 
+				 
 
         reg_addr2_ctl_3 <= ir(14) or ir(12);
         input_alu2_ctl_4(1) <= '0';
@@ -156,9 +177,6 @@ architecture behave of decode_stage is
 
         lw_prev1 <= lw_yes1;
 
-        load_hzrd_out_2a <= lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_a_hzrd1);
-        load_hzrd_out_2b <= lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_b_hzrd1);
-        load_hzrd_out_2c <= lw_prev1 and (not (jal_yes1 or lhi_yes1)) and (r_c_hzrd1);
         r_a2 <= r_a1;
         r_a3 <= r_a2;
       end if;
